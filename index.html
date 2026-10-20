@@ -24,17 +24,19 @@
 @keyframes calcFlash{0%{background:#c8edda}100%{background:transparent}}
 @media(max-width:600px){.quick-cases .presets button{padding:6px 9px}.case-state{line-height:1.8}}
 @media print{.quick-cases .presets,.mode-switch,.action-feedback{display:none!important}.quick-cases{padding:4px 0;border:0}}
-</style><meta name="public-build" content="41ca0de0902fccd75d5f97c84f7cff3a68fc200c50b4c42e022a770b3f92d8bb"></head><body><noscript>请用浏览器打开并启用JavaScript，以填写和联动计算。</noscript><main>
+
+.result-invalid{color:var(--bad)!important}.entry.result-invalid{background:#fff0ef}.entry.result-invalid input,.entry.result-invalid input::placeholder,.entry.result-invalid select{color:var(--bad)!important;-webkit-text-fill-color:var(--bad)!important}.result-pending{color:var(--muted)!important}
+</style><meta name="public-build" content="911d9ce7bbd0893f779a0893899caac3a81d493bfc51334f6d98c937f6db9c9a"></head><body><noscript>请用浏览器打开并启用JavaScript，以填写和联动计算。</noscript><main>
 <header><div><h1>企微AI员工测算</h1><div class="sub">零犀 · 月度营收、成本与毛利　｜　人民币</div></div><div class="tools"><button class="primary" id="save-html">保存填写版</button><div class="more-wrap"><button aria-label="数据操作菜单" id="more-button">数据操作 ▾</button><div class="more-menu" hidden="" id="more-menu"><button id="export-json">导出填写数据</button><button id="import-json">导入上次数据</button><button id="reset">清空填写参数</button></div></div></div></header>
-<section aria-label="用量情景切换" class="quick-cases"><div class="presets"><span>用量情景</span><button aria-pressed="false" data-preset="regular" type="button">较低用量（当前一半）</button><button aria-pressed="false" data-preset="original" type="button">当前用量基准</button><button aria-pressed="false" data-preset="high" type="button">较高用量（当前两倍）</button></div><div class="case-state" id="case-state"></div><div aria-live="polite" class="action-feedback" hidden="" id="action-feedback" role="status"></div></section><div class="metric-grid"><div class="metric"><div class="label">月营收 / 元</div><strong id="kpi-revenue">—</strong><small id="kpi-sub-revenue">待填写或导入参数</small></div><div class="metric"><div class="label">已列月成本 / 元</div><strong id="kpi-totalCost">—</strong><small id="kpi-sub-totalCost">待填写或导入参数</small></div><div class="metric highlight"><div class="label">月毛利 / 元</div><strong id="kpi-profit">—</strong><small id="kpi-sub-profit">待填写或导入参数</small></div><div class="metric"><div class="label">毛利率</div><strong id="kpi-margin">—</strong><small id="kpi-sub-margin">待填写或导入参数</small></div></div><div class="scale" id="scale"></div><div class="conclusion" id="conclusion" role="status">待填写或导入参数</div>
+<section aria-label="用量情景切换" class="quick-cases"><div class="presets"><span>用量情景</span><button aria-pressed="false" data-preset="regular" type="button">较低用量（当前一半）</button><button aria-pressed="false" data-preset="original" type="button">当前用量基准</button><button aria-pressed="false" data-preset="high" type="button">较高用量（当前两倍）</button></div><div class="case-state" id="case-state"></div><div aria-live="polite" class="action-feedback" hidden="" id="action-feedback" role="status"></div></section><div class="metric-grid"><div class="metric"><div class="label">月营收 / 元</div><strong id="kpi-revenue">待填写</strong><small id="kpi-sub-revenue">待填写</small></div><div class="metric"><div class="label">已列月成本 / 元</div><strong id="kpi-totalCost">待填写</strong><small id="kpi-sub-totalCost">待填写</small></div><div class="metric highlight"><div class="label">月毛利 / 元</div><strong id="kpi-profit">待填写</strong><small id="kpi-sub-profit">待填写</small></div><div class="metric"><div class="label">毛利率</div><strong id="kpi-margin">待填写</strong><small id="kpi-sub-margin">待填写</small></div></div><div class="scale" id="scale"></div><div class="conclusion" id="conclusion" role="status">待填写</div>
 <div class="box"><table aria-label="月度收入与成本分项" class="summary"><thead><tr><th>收入 / 成本明细</th><th class="num">全项目 / 元·月</th><th class="num">每名AI / 元·月</th></tr></thead><tbody id="summary-body"></tbody></table></div>
-<div class="summary-end"><span>毛利按已填写成本计算，不是净利润；基础包内不再收一次算力费。</span><span id="package-check">待填写或导入参数</span></div><div aria-live="polite" class="messages" id="messages"></div><div aria-live="polite" id="change-note"></div>
+<div class="summary-end"><span>毛利按已填写成本计算，不是净利润；基础包内不再收一次算力费。</span><span id="package-check">待填写</span></div><div aria-live="polite" class="messages" id="messages"></div><div aria-live="polite" id="change-note"></div>
 <div class="calc-head"><h2>改参数，结果自动更新</h2><div class="legend"><span><i></i>可填写</span><span><i class="green"></i>联动结果</span><span>标注“反算”的结果也可改</span></div></div>
-<div class="box scroll"><table aria-label="可编辑参数与联动公式" class="form"><colgroup><col style="width:19%"/><col style="width:14%"/><col style="width:21%"/><col style="width:15%"/><col style="width:31%"/></colgroup><thead><tr><th>条件</th><th>填写</th><th>联动结果 / 另一条件</th><th>数值</th><th>怎么算</th></tr></thead><tbody><tr class="section"><td colspan="5">规模与员工收费</td></tr><tr><td class="label">总好友人数<span class="unit">人</span></td><td class="entry" id="cell-totalFriends"><input aria-describedby="error-totalFriends" aria-label="总好友量" autocomplete="off" data-field="totalFriends" id="totalFriends" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-totalFriends"></small></td><td class="label">活跃好友人数<span class="unit">人</span></td><td class="entry computed reverse-entry" id="cell-activeFriends"><input aria-describedby="error-activeFriends" aria-label="活跃好友数" autocomplete="off" data-reverse="activeFriends" id="activeFriends" inputmode="decimal" spellcheck="false" type="text"/><span class="cell-tag">可改 · 反算</span><small class="field-error" hidden="" id="error-activeFriends"></small></td><td class="formula">总好友 × 活跃比例；改右侧人数会反算比例。</td></tr><tr><td class="label">活跃好友比例<span class="unit">%</span></td><td class="entry" id="cell-activePct"><input aria-describedby="error-activePct" aria-label="活跃比例" autocomplete="off" data-field="activePct" id="activePct" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-activePct"></small></td><td class="label">需要AI员工<span class="unit">名</span></td><td class="entry computed count-entry" id="cell-manualAI"><input aria-describedby="error-manualAI" aria-label="需要AI员工数" autocomplete="off" data-field="manualAI" id="manualAI" inputmode="decimal" placeholder="自动计算" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-manualAI"></small><div class="count-state"><span id="tag-manualAI">自动</span><button class="auto-btn" data-auto="manualAI" hidden="" type="button">恢复自动</button></div></td><td class="formula">活跃人数 ÷ 每名服务人数，向上取整。</td></tr><tr><td class="label">每名AI服务人数<span class="unit">活跃好友 / 名</span></td><td class="entry" id="cell-friendsPerAI"><input aria-describedby="error-friendsPerAI" aria-label="每名AI服务人数" autocomplete="off" data-field="friendsPerAI" id="friendsPerAI" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-friendsPerAI"></small></td><td class="label">实际每名平均服务<span class="unit">人 / 名</span></td><td class="computed"><output data-output="actualFriendsPerAI">—</output></td><td class="formula">右侧＝活跃好友 ÷ 最终员工数；左侧是套餐规格。</td></tr><tr><td class="label">AI员工月费<span class="unit">元 / 名 / 月</span></td><td class="entry" id="cell-aiMonthly"><input aria-describedby="error-aiMonthly" aria-label="AI员工月费" autocomplete="off" data-field="aiMonthly" id="aiMonthly" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-aiMonthly"></small></td><td class="label">月基础服务收入<span class="unit">元 / 月</span></td><td class="entry computed reverse-entry" id="cell-baseRevenueEdit"><input aria-describedby="error-baseRevenueEdit" aria-label="月基础服务收入" autocomplete="off" data-reverse="baseRevenueEdit" id="baseRevenueEdit" inputmode="decimal" spellcheck="false" type="text"/><span class="cell-tag">可改 · 反算</span><small class="field-error" hidden="" id="error-baseRevenueEdit"></small></td><td class="formula">员工数 × 月费；改右侧收入会反算月费。</td></tr><tr class="section"><td colspan="5">每月AI用量 <span class="section-sub" id="usage-status">当前：直接填Token</span></td></tr><tr id="usage-control-row"><td class="usage-controls" colspan="5"><div class="mode-switch"><button data-mode="token" type="button">直接填Token</button><button data-mode="chars" type="button">按对话字数估算</button></div><div hidden=""><div class="entry" id="cell-usageMode"><select aria-label="用量计算方式" data-field="usageMode" id="usageMode"><option value="token">按Token填用量</option><option value="chars">按字数估用量</option></select><small class="field-error" hidden="" id="error-usageMode"></small></div></div><p id="mode-hint" role="status"></p><span id="usage-calculation"></span></td></tr><tr><td class="label">每人月AI处理次数<span class="unit">次 / 活跃好友</span></td><td class="entry" id="cell-rounds"><input aria-describedby="error-rounds" aria-label="每位活跃好友月互动次数" autocomplete="off" data-field="rounds" id="rounds" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-rounds"></small></td><td class="label">全项目月处理次数<span class="unit">次</span></td><td class="computed"><output data-output="calls">—</output></td><td class="formula">活跃好友 × 每人次数；一轮相关调用合计，不按消息气泡计。</td></tr><tr hidden="" id="chars-input-row"><td class="chars-cell" colspan="5"><div id="words-panel"><table class="form"><colgroup><col style="width:19%"/><col style="width:14%"/><col style="width:21%"/><col style="width:15%"/><col style="width:31%"/></colgroup><tbody><tr><td class="label">用户每轮发言<span class="unit">平均字数</span></td><td class="entry" id="cell-userChars"><input aria-describedby="error-userChars" aria-label="用户每轮发言" autocomplete="off" data-field="userChars" id="userChars" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-userChars"></small></td><td class="label">AI每轮发给客户<span class="unit">平均字数</span></td><td class="entry" id="cell-replyChars"><input aria-describedby="error-replyChars" aria-label="AI每轮发给客户的回复" autocomplete="off" data-field="replyChars" id="replyChars" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-replyChars"></small></td><td class="formula">只指本轮双方新发的文字，不包括历史和后台记录。</td></tr><tr><td class="label">AI额外读取背景<span class="unit">字 / 次</span></td><td class="entry" id="cell-contextChars"><input aria-describedby="error-contextChars" aria-label="AI额外读取的背景" autocomplete="off" data-field="contextChars" id="contextChars" inputmode="decimal" placeholder="" spellcheck="false" title="按当前输入和输出换算的预算假设，不是已测量的实际文字量。" type="text"/><small class="field-error" hidden="" id="error-contextChars"></small></td><td class="label">AI其他生成记录<span class="unit">字 / 次</span></td><td class="entry" id="cell-recordChars"><input aria-describedby="error-recordChars" aria-label="AI其他生成记录" autocomplete="off" data-field="recordChars" id="recordChars" inputmode="decimal" placeholder="" spellcheck="false" title="按当前输入和输出换算的预算假设，不是已测量的实际文字量。" type="text"/><small class="field-error" hidden="" id="error-recordChars"></small></td><td class="formula">背景＝相关历史、需求、规则、资料；记录＝需求和意向更新。</td></tr><tr><td class="label">字数换算系数<span class="unit">Token / 中文字</span></td><td class="entry" id="cell-tokensPerChar"><input aria-describedby="error-tokensPerChar" aria-label="字数换算系数" autocomplete="off" data-field="tokensPerChar" id="tokensPerChar" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-tokensPerChar"></small></td><td class="label">AI每次合计读取<span class="unit">约字数</span></td><td class="computed"><output data-output="inputReadChars">—</output></td><td class="formula">请填写适用于本次预算的换算系数；不是所有模型通用，需另行核验。</td></tr><tr><td class="label">AI每次合计生成<span class="unit">约字数</span></td><td class="computed"><output data-output="outputAllChars">—</output></td><td class="formula" colspan="3">AI写出的总量＝发给客户的回复＋其他生成记录，不等于客户收到的回复长度。</td></tr></tbody></table></div></td></tr><tr id="token-input-row"><td class="label"><span id="input-field-label">每次总输入</span><span class="unit">Token / 次</span></td><td class="entry" id="cell-inputPerRound"><input aria-describedby="error-inputPerRound" aria-label="每次合计输入" autocomplete="off" data-field="inputPerRound" id="inputPerRound" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-inputPerRound"></small></td><td class="label">全项目月输入量<span class="unit">百万Token / 月</span></td><td class="computed"><output data-output="inputMillion">—</output></td><td class="formula">处理次数 × 单次输入 ÷ 100万，另加额外调用。</td></tr><tr id="token-output-row"><td class="label"><span id="output-field-label">每次总输出</span><span class="unit">Token / 次</span></td><td class="entry" id="cell-outputPerRound"><input aria-describedby="error-outputPerRound" aria-label="每次合计输出" autocomplete="off" data-field="outputPerRound" id="outputPerRound" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-outputPerRound"></small></td><td class="label">全项目月输出量<span class="unit">百万Token / 月</span></td><td class="computed"><output data-output="outputMillion">—</output></td><td class="formula">处理次数 × 单次输出 ÷ 100万，另加额外调用。</td></tr><tr class="section"><td colspan="5">基础算力额度与超量价格</td></tr><tr><td class="label">每名内含输入<span class="unit">万Token / 月</span></td><td class="entry" id="cell-includedInputWan"><input aria-describedby="error-includedInputWan" aria-label="每名AI内含输入额度" autocomplete="off" data-field="includedInputWan" id="includedInputWan" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-includedInputWan"></small></td><td class="label">每名内含输出<span class="unit">万Token / 月</span></td><td class="entry" id="cell-includedOutputWan"><input aria-describedby="error-includedOutputWan" aria-label="每名AI内含输出额度" autocomplete="off" data-field="includedOutputWan" id="includedOutputWan" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-includedOutputWan"></small></td><td class="formula">包内不重复收费；用量不等于额度，成本按实际调用算。</td></tr><tr><td class="label">输入成本单价<span class="unit">元 / 百万Token</span></td><td class="entry" id="cell-costInput"><input aria-describedby="error-costInput" aria-label="输入采购成本" autocomplete="off" data-field="costInput" id="costInput" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-costInput"></small></td><td class="label">输出成本单价<span class="unit">元 / 百万Token</span></td><td class="entry" id="cell-costOutput"><input aria-describedby="error-costOutput" aria-label="输出采购成本" autocomplete="off" data-field="costOutput" id="costOutput" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-costOutput"></small></td><td class="formula">实际输入 × 输入成本＋实际输出 × 输出成本。</td></tr><tr><td class="label">超量输入售价<span class="unit">元 / 百万Token</span></td><td class="entry" id="cell-overInput"><input aria-describedby="error-overInput" aria-label="超量输入售价" autocomplete="off" data-field="overInput" id="overInput" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-overInput"></small></td><td class="label">超量输出售价<span class="unit">元 / 百万Token</span></td><td class="entry" id="cell-overOutput"><input aria-describedby="error-overOutput" aria-label="超量输出售价" autocomplete="off" data-field="overOutput" id="overOutput" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-overOutput"></small></td><td class="formula">只向超过额度的部分收费；与AI员工月费不作Token售价折算。</td></tr><tr><td class="label">超量是否收费</td><td class="entry" id="cell-chargeOverage"><select aria-label="是否收超量费" data-field="chargeOverage" id="chargeOverage"><option value="true">收取超量费</option><option value="false">不收；仅看成本风险</option></select><small class="field-error" hidden="" id="error-chargeOverage"></small></td><td class="label">内含额度全用满成本<span class="unit">元 / 名 / 月</span></td><td class="computed"><output data-output="allowancePerAI">—</output></td><td class="formula">这里是每名AI的算力采购成本，不是整份服务成本。</td></tr><tr class="section"><td colspan="5">账号、服务器及其他成本</td></tr><tr><td class="label">每账号好友容量<span class="unit">总好友 / 账号</span></td><td class="entry" id="cell-friendsPerAccount"><input aria-describedby="error-friendsPerAccount" aria-label="每账号好友容量" autocomplete="off" data-field="friendsPerAccount" id="friendsPerAccount" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-friendsPerAccount"></small></td><td class="label">需要企微账号<span class="unit">个</span></td><td class="entry computed count-entry" id="cell-manualAccounts"><input aria-describedby="error-manualAccounts" aria-label="所需企微账号数" autocomplete="off" data-field="manualAccounts" id="manualAccounts" inputmode="decimal" placeholder="自动计算" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-manualAccounts"></small><div class="count-state"><span id="tag-manualAccounts">自动</span><button class="auto-btn" data-auto="manualAccounts" hidden="" type="button">恢复自动</button></div></td><td class="formula">按全部好友计算；默认每名AI至少一个账号，可在下方调整规则。</td></tr><tr><td class="label">每账号月费<span class="unit">元 / 个 / 月</span></td><td class="entry" id="cell-accountMonthly"><input aria-describedby="error-accountMonthly" aria-label="每账号月费" autocomplete="off" data-field="accountMonthly" id="accountMonthly" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-accountMonthly"></small></td><td class="label">账号月总费用<span class="unit">元 / 月</span></td><td class="entry computed reverse-entry" id="cell-accountCostEdit"><input aria-describedby="error-accountCostEdit" aria-label="账号月总费用" autocomplete="off" data-reverse="accountCostEdit" id="accountCostEdit" inputmode="decimal" spellcheck="false" type="text"/><span class="cell-tag">可改 · 反算</span><small class="field-error" hidden="" id="error-accountCostEdit"></small></td><td class="formula">账号数 × 单价；改右侧总费用会反算账号单价。</td></tr><tr><td class="label">每台服务器容量<span class="unit">账号 / 台</span></td><td class="entry" id="cell-accountsPerServer"><input aria-describedby="error-accountsPerServer" aria-label="每台服务器承载账号" autocomplete="off" data-field="accountsPerServer" id="accountsPerServer" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-accountsPerServer"></small></td><td class="label">需要服务器<span class="unit">台</span></td><td class="entry computed count-entry" id="cell-manualServers"><input aria-describedby="error-manualServers" aria-label="所需服务器数" autocomplete="off" data-field="manualServers" id="manualServers" inputmode="decimal" placeholder="自动计算" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-manualServers"></small><div class="count-state"><span id="tag-manualServers">自动</span><button class="auto-btn" data-auto="manualServers" hidden="" type="button">恢复自动</button></div></td><td class="formula">账号数 ÷ 每台容量，向上取整；可填实际数量，容量不足会报错。</td></tr><tr><td class="label">每台服务器月费<span class="unit">元 / 台 / 月</span></td><td class="entry" id="cell-serverMonthly"><input aria-describedby="error-serverMonthly" aria-label="每台服务器月费" autocomplete="off" data-field="serverMonthly" id="serverMonthly" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-serverMonthly"></small></td><td class="label">服务器月总费用<span class="unit">元 / 月</span></td><td class="entry computed reverse-entry" id="cell-serverCostEdit"><input aria-describedby="error-serverCostEdit" aria-label="服务器月总费用" autocomplete="off" data-reverse="serverCostEdit" id="serverCostEdit" inputmode="decimal" spellcheck="false" type="text"/><span class="cell-tag">可改 · 反算</span><small class="field-error" hidden="" id="error-serverCostEdit"></small></td><td class="formula">服务器数 × 单价；改右侧总费用会反算单价。</td></tr><tr><td class="label">其他交付费用<span class="unit">元 / 全项目 / 月</span></td><td class="entry" id="cell-otherMonthly"><input aria-describedby="error-otherMonthly" aria-label="其他月交付费用" autocomplete="off" data-field="otherMonthly" id="otherMonthly" inputmode="decimal" placeholder="未填，不计入已列成本" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-otherMonthly"></small></td><td class="label">已列月总成本<span class="unit">元 / 月</span></td><td class="computed"><output data-output="totalCost">—</output></td><td class="formula">算力＋账号＋服务器＋其他费用。留空表示未核算，并非确认为零。</td></tr></tbody></table></div><details class="optional"><summary>配置规则：账号怎样配、输入输出额度怎样扣</summary><div class="body scroll"><table class="form"><colgroup><col style="width:19%"/><col style="width:14%"/><col style="width:21%"/><col style="width:15%"/><col style="width:31%"/></colgroup><tbody><tr><td class="label">账号配置规则</td><td class="entry" id="cell-oneAccountPerAI"><select aria-label="账号配置口径" data-field="oneAccountPerAI" id="oneAccountPerAI"><option value="true">每名AI至少配1账号</option><option value="false">仅按全部好友容量配号</option></select><small class="field-error" hidden="" id="error-oneAccountPerAI"></small></td><td class="label">额度扣减规则</td><td class="entry" id="cell-poolMode"><select aria-label="额度扣减方式" data-field="poolMode" id="poolMode"><option value="separate">输入 / 输出分别扣减</option><option value="shared">输入 / 输出等值共享</option></select><small class="field-error" hidden="" id="error-poolMode"></small></td><td class="formula"><span id="pool-note"></span></td></tr><tr id="shared-row"><td class="label">共享额度系数<span class="unit">1输出抵多少输入</span></td><td class="entry" id="cell-creditWeight"><input aria-describedby="error-creditWeight" aria-label="共享额度换算系数" autocomplete="off" data-field="creditWeight" id="creditWeight" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-creditWeight"></small></td><td class="formula" colspan="3">仅用于额度扣减，不是Token用量比例，也不是员工服务费的折算价格。采购价格改变时不自动改系数。</td></tr></tbody></table></div></details><details class="optional" id="extra-details"><summary>额外AI调用：个性化触达、额外判断等（请填写，不重复计量）</summary><div class="body"><div class="mini-fields">
+<div class="box scroll"><table aria-label="可编辑参数与联动公式" class="form"><colgroup><col style="width:19%"/><col style="width:14%"/><col style="width:21%"/><col style="width:15%"/><col style="width:31%"/></colgroup><thead><tr><th>条件</th><th>填写</th><th>联动结果 / 另一条件</th><th>数值</th><th>怎么算</th></tr></thead><tbody><tr class="section"><td colspan="5">规模与员工收费</td></tr><tr><td class="label">总好友人数<span class="unit">人</span></td><td class="entry" id="cell-totalFriends"><input aria-describedby="error-totalFriends" aria-label="总好友量" autocomplete="off" data-field="totalFriends" id="totalFriends" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-totalFriends"></small></td><td class="label">活跃好友人数<span class="unit">人</span></td><td class="entry computed reverse-entry" id="cell-activeFriends"><input aria-describedby="error-activeFriends" aria-label="活跃好友数" autocomplete="off" data-reverse="activeFriends" id="activeFriends" inputmode="decimal" spellcheck="false" type="text"/><span class="cell-tag">可改 · 反算</span><small class="field-error" hidden="" id="error-activeFriends"></small></td><td class="formula">总好友 × 活跃比例；改右侧人数会反算比例。</td></tr><tr><td class="label">活跃好友比例<span class="unit">%</span></td><td class="entry" id="cell-activePct"><input aria-describedby="error-activePct" aria-label="活跃比例" autocomplete="off" data-field="activePct" id="activePct" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-activePct"></small></td><td class="label">需要AI员工<span class="unit">名</span></td><td class="entry computed count-entry" id="cell-manualAI"><input aria-describedby="error-manualAI" aria-label="需要AI员工数" autocomplete="off" data-field="manualAI" id="manualAI" inputmode="decimal" placeholder="自动计算" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-manualAI"></small><div class="count-state"><span id="tag-manualAI">自动</span><button class="auto-btn" data-auto="manualAI" hidden="" type="button">恢复自动</button></div></td><td class="formula">活跃人数 ÷ 每名服务人数，向上取整。</td></tr><tr><td class="label">每名AI服务人数<span class="unit">活跃好友 / 名</span></td><td class="entry" id="cell-friendsPerAI"><input aria-describedby="error-friendsPerAI" aria-label="每名AI服务人数" autocomplete="off" data-field="friendsPerAI" id="friendsPerAI" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-friendsPerAI"></small></td><td class="label">实际每名平均服务<span class="unit">人 / 名</span></td><td class="computed"><output data-output="actualFriendsPerAI">待填写</output></td><td class="formula">右侧＝活跃好友 ÷ 最终员工数；左侧是套餐规格。</td></tr><tr><td class="label">AI员工月费<span class="unit">元 / 名 / 月</span></td><td class="entry" id="cell-aiMonthly"><input aria-describedby="error-aiMonthly" aria-label="AI员工月费" autocomplete="off" data-field="aiMonthly" id="aiMonthly" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-aiMonthly"></small></td><td class="label">月基础服务收入<span class="unit">元 / 月</span></td><td class="entry computed reverse-entry" id="cell-baseRevenueEdit"><input aria-describedby="error-baseRevenueEdit" aria-label="月基础服务收入" autocomplete="off" data-reverse="baseRevenueEdit" id="baseRevenueEdit" inputmode="decimal" spellcheck="false" type="text"/><span class="cell-tag">可改 · 反算</span><small class="field-error" hidden="" id="error-baseRevenueEdit"></small></td><td class="formula">员工数 × 月费；改右侧收入会反算月费。</td></tr><tr class="section"><td colspan="5">每月AI用量 <span class="section-sub" id="usage-status">当前：直接填Token</span></td></tr><tr id="usage-control-row"><td class="usage-controls" colspan="5"><div class="mode-switch"><button data-mode="token" type="button">直接填Token</button><button data-mode="chars" type="button">按对话字数估算</button></div><div hidden=""><div class="entry" id="cell-usageMode"><select aria-label="用量计算方式" data-field="usageMode" id="usageMode"><option value="token">按Token填用量</option><option value="chars">按字数估用量</option></select><small class="field-error" hidden="" id="error-usageMode"></small></div></div><p id="mode-hint" role="status"></p><span id="usage-calculation"></span></td></tr><tr><td class="label">每人月AI处理次数<span class="unit">次 / 活跃好友</span></td><td class="entry" id="cell-rounds"><input aria-describedby="error-rounds" aria-label="每位活跃好友月互动次数" autocomplete="off" data-field="rounds" id="rounds" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-rounds"></small></td><td class="label">全项目月处理次数<span class="unit">次</span></td><td class="computed"><output data-output="calls">待填写</output></td><td class="formula">活跃好友 × 每人次数；一轮相关调用合计，不按消息气泡计。</td></tr><tr hidden="" id="chars-input-row"><td class="chars-cell" colspan="5"><div id="words-panel"><table class="form"><colgroup><col style="width:19%"/><col style="width:14%"/><col style="width:21%"/><col style="width:15%"/><col style="width:31%"/></colgroup><tbody><tr><td class="label">用户每轮发言<span class="unit">平均字数</span></td><td class="entry" id="cell-userChars"><input aria-describedby="error-userChars" aria-label="用户每轮发言" autocomplete="off" data-field="userChars" id="userChars" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-userChars"></small></td><td class="label">AI每轮发给客户<span class="unit">平均字数</span></td><td class="entry" id="cell-replyChars"><input aria-describedby="error-replyChars" aria-label="AI每轮发给客户的回复" autocomplete="off" data-field="replyChars" id="replyChars" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-replyChars"></small></td><td class="formula">只指本轮双方新发的文字，不包括历史和后台记录。</td></tr><tr><td class="label">AI额外读取背景<span class="unit">字 / 次</span></td><td class="entry" id="cell-contextChars"><input aria-describedby="error-contextChars" aria-label="AI额外读取的背景" autocomplete="off" data-field="contextChars" id="contextChars" inputmode="decimal" placeholder="" spellcheck="false" title="按当前输入和输出换算的预算假设，不是已测量的实际文字量。" type="text"/><small class="field-error" hidden="" id="error-contextChars"></small></td><td class="label">AI其他生成记录<span class="unit">字 / 次</span></td><td class="entry" id="cell-recordChars"><input aria-describedby="error-recordChars" aria-label="AI其他生成记录" autocomplete="off" data-field="recordChars" id="recordChars" inputmode="decimal" placeholder="" spellcheck="false" title="按当前输入和输出换算的预算假设，不是已测量的实际文字量。" type="text"/><small class="field-error" hidden="" id="error-recordChars"></small></td><td class="formula">背景＝相关历史、需求、规则、资料；记录＝需求和意向更新。</td></tr><tr><td class="label">字数换算系数<span class="unit">Token / 中文字</span></td><td class="entry" id="cell-tokensPerChar"><input aria-describedby="error-tokensPerChar" aria-label="字数换算系数" autocomplete="off" data-field="tokensPerChar" id="tokensPerChar" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-tokensPerChar"></small></td><td class="label">AI每次合计读取<span class="unit">约字数</span></td><td class="computed"><output data-output="inputReadChars">待填写</output></td><td class="formula">字数换算系数仅用于字数估算与说明；直接填Token时无需填写。</td></tr><tr><td class="label">AI每次合计生成<span class="unit">约字数</span></td><td class="computed"><output data-output="outputAllChars">待填写</output></td><td class="formula" colspan="3">AI写出的总量＝发给客户的回复＋其他生成记录，不等于客户收到的回复长度。</td></tr></tbody></table></div></td></tr><tr id="token-input-row"><td class="label"><span id="input-field-label">每次总输入</span><span class="unit">Token / 次</span></td><td class="entry" id="cell-inputPerRound"><input aria-describedby="error-inputPerRound" aria-label="每次合计输入" autocomplete="off" data-field="inputPerRound" id="inputPerRound" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-inputPerRound"></small></td><td class="label">全项目月输入量<span class="unit">百万Token / 月</span></td><td class="computed"><output data-output="inputMillion">待填写</output></td><td class="formula">处理次数 × 单次输入 ÷ 100万，另加额外调用。</td></tr><tr id="token-output-row"><td class="label"><span id="output-field-label">每次总输出</span><span class="unit">Token / 次</span></td><td class="entry" id="cell-outputPerRound"><input aria-describedby="error-outputPerRound" aria-label="每次合计输出" autocomplete="off" data-field="outputPerRound" id="outputPerRound" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-outputPerRound"></small></td><td class="label">全项目月输出量<span class="unit">百万Token / 月</span></td><td class="computed"><output data-output="outputMillion">待填写</output></td><td class="formula">处理次数 × 单次输出 ÷ 100万，另加额外调用。</td></tr><tr class="section"><td colspan="5">基础算力额度与超量价格</td></tr><tr><td class="label">每名内含输入<span class="unit">万Token / 月</span></td><td class="entry" id="cell-includedInputWan"><input aria-describedby="error-includedInputWan" aria-label="每名AI内含输入额度" autocomplete="off" data-field="includedInputWan" id="includedInputWan" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-includedInputWan"></small></td><td class="label">每名内含输出<span class="unit">万Token / 月</span></td><td class="entry" id="cell-includedOutputWan"><input aria-describedby="error-includedOutputWan" aria-label="每名AI内含输出额度" autocomplete="off" data-field="includedOutputWan" id="includedOutputWan" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-includedOutputWan"></small></td><td class="formula">包内不重复收费；用量不等于额度，成本按实际调用算。</td></tr><tr><td class="label">输入成本单价<span class="unit">元 / 百万Token</span></td><td class="entry" id="cell-costInput"><input aria-describedby="error-costInput" aria-label="输入采购成本" autocomplete="off" data-field="costInput" id="costInput" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-costInput"></small></td><td class="label">输出成本单价<span class="unit">元 / 百万Token</span></td><td class="entry" id="cell-costOutput"><input aria-describedby="error-costOutput" aria-label="输出采购成本" autocomplete="off" data-field="costOutput" id="costOutput" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-costOutput"></small></td><td class="formula">实际输入 × 输入成本＋实际输出 × 输出成本。</td></tr><tr><td class="label">超量输入售价<span class="unit">元 / 百万Token</span></td><td class="entry" id="cell-overInput"><input aria-describedby="error-overInput" aria-label="超量输入售价" autocomplete="off" data-field="overInput" id="overInput" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-overInput"></small></td><td class="label">超量输出售价<span class="unit">元 / 百万Token</span></td><td class="entry" id="cell-overOutput"><input aria-describedby="error-overOutput" aria-label="超量输出售价" autocomplete="off" data-field="overOutput" id="overOutput" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-overOutput"></small></td><td class="formula">只向超过额度的部分收费；与AI员工月费不作Token售价折算。</td></tr><tr><td class="label">超量是否收费</td><td class="entry" id="cell-chargeOverage"><select aria-label="是否收超量费" data-field="chargeOverage" id="chargeOverage"><option value="true">收取超量费</option><option value="false">不收；仅看成本风险</option></select><small class="field-error" hidden="" id="error-chargeOverage"></small></td><td class="label">内含额度全用满成本<span class="unit">元 / 名 / 月</span></td><td class="computed"><output data-output="allowancePerAI">待填写</output></td><td class="formula">这里是每名AI的算力采购成本，不是整份服务成本。</td></tr><tr class="section"><td colspan="5">账号、服务器及其他成本</td></tr><tr><td class="label">每账号好友容量<span class="unit">总好友 / 账号</span></td><td class="entry" id="cell-friendsPerAccount"><input aria-describedby="error-friendsPerAccount" aria-label="每账号好友容量" autocomplete="off" data-field="friendsPerAccount" id="friendsPerAccount" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-friendsPerAccount"></small></td><td class="label">需要企微账号<span class="unit">个</span></td><td class="entry computed count-entry" id="cell-manualAccounts"><input aria-describedby="error-manualAccounts" aria-label="所需企微账号数" autocomplete="off" data-field="manualAccounts" id="manualAccounts" inputmode="decimal" placeholder="自动计算" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-manualAccounts"></small><div class="count-state"><span id="tag-manualAccounts">自动</span><button class="auto-btn" data-auto="manualAccounts" hidden="" type="button">恢复自动</button></div></td><td class="formula">按全部好友计算；默认每名AI至少一个账号，可在下方调整规则。</td></tr><tr><td class="label">每账号月费<span class="unit">元 / 个 / 月</span></td><td class="entry" id="cell-accountMonthly"><input aria-describedby="error-accountMonthly" aria-label="每账号月费" autocomplete="off" data-field="accountMonthly" id="accountMonthly" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-accountMonthly"></small></td><td class="label">账号月总费用<span class="unit">元 / 月</span></td><td class="entry computed reverse-entry" id="cell-accountCostEdit"><input aria-describedby="error-accountCostEdit" aria-label="账号月总费用" autocomplete="off" data-reverse="accountCostEdit" id="accountCostEdit" inputmode="decimal" spellcheck="false" type="text"/><span class="cell-tag">可改 · 反算</span><small class="field-error" hidden="" id="error-accountCostEdit"></small></td><td class="formula">账号数 × 单价；改右侧总费用会反算账号单价。</td></tr><tr><td class="label">每台服务器容量<span class="unit">账号 / 台</span></td><td class="entry" id="cell-accountsPerServer"><input aria-describedby="error-accountsPerServer" aria-label="每台服务器承载账号" autocomplete="off" data-field="accountsPerServer" id="accountsPerServer" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-accountsPerServer"></small></td><td class="label">需要服务器<span class="unit">台</span></td><td class="entry computed count-entry" id="cell-manualServers"><input aria-describedby="error-manualServers" aria-label="所需服务器数" autocomplete="off" data-field="manualServers" id="manualServers" inputmode="decimal" placeholder="自动计算" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-manualServers"></small><div class="count-state"><span id="tag-manualServers">自动</span><button class="auto-btn" data-auto="manualServers" hidden="" type="button">恢复自动</button></div></td><td class="formula">账号数 ÷ 每台容量，向上取整；可填实际数量，容量不足会报错。</td></tr><tr><td class="label">每台服务器月费<span class="unit">元 / 台 / 月</span></td><td class="entry" id="cell-serverMonthly"><input aria-describedby="error-serverMonthly" aria-label="每台服务器月费" autocomplete="off" data-field="serverMonthly" id="serverMonthly" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-serverMonthly"></small></td><td class="label">服务器月总费用<span class="unit">元 / 月</span></td><td class="entry computed reverse-entry" id="cell-serverCostEdit"><input aria-describedby="error-serverCostEdit" aria-label="服务器月总费用" autocomplete="off" data-reverse="serverCostEdit" id="serverCostEdit" inputmode="decimal" spellcheck="false" type="text"/><span class="cell-tag">可改 · 反算</span><small class="field-error" hidden="" id="error-serverCostEdit"></small></td><td class="formula">服务器数 × 单价；改右侧总费用会反算单价。</td></tr><tr><td class="label">其他交付费用<span class="unit">元 / 全项目 / 月</span></td><td class="entry" id="cell-otherMonthly"><input aria-describedby="error-otherMonthly" aria-label="其他月交付费用" autocomplete="off" data-field="otherMonthly" id="otherMonthly" inputmode="decimal" placeholder="未填，不计入已列成本" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-otherMonthly"></small></td><td class="label">已列月总成本<span class="unit">元 / 月</span></td><td class="computed"><output data-output="totalCost">待填写</output></td><td class="formula">算力＋账号＋服务器＋其他费用。留空表示未核算，并非确认为零。</td></tr></tbody></table></div><details class="optional"><summary>配置规则：账号怎样配、输入输出额度怎样扣</summary><div class="body scroll"><table class="form"><colgroup><col style="width:19%"/><col style="width:14%"/><col style="width:21%"/><col style="width:15%"/><col style="width:31%"/></colgroup><tbody><tr><td class="label">账号配置规则</td><td class="entry" id="cell-oneAccountPerAI"><select aria-label="账号配置口径" data-field="oneAccountPerAI" id="oneAccountPerAI"><option value="true">每名AI至少配1账号</option><option value="false">仅按全部好友容量配号</option></select><small class="field-error" hidden="" id="error-oneAccountPerAI"></small></td><td class="label">额度扣减规则</td><td class="entry" id="cell-poolMode"><select aria-label="额度扣减方式" data-field="poolMode" id="poolMode"><option value="separate">输入 / 输出分别扣减</option><option value="shared">输入 / 输出等值共享</option></select><small class="field-error" hidden="" id="error-poolMode"></small></td><td class="formula"><span id="pool-note"></span></td></tr><tr id="shared-row"><td class="label">共享额度系数<span class="unit">1输出抵多少输入</span></td><td class="entry" id="cell-creditWeight"><input aria-describedby="error-creditWeight" aria-label="共享额度换算系数" autocomplete="off" data-field="creditWeight" id="creditWeight" inputmode="decimal" placeholder="" spellcheck="false" type="text"/><small class="field-error" hidden="" id="error-creditWeight"></small></td><td class="formula" colspan="3">仅用于额度扣减，不是Token用量比例，也不是员工服务费的折算价格。采购价格改变时不自动改系数。</td></tr></tbody></table></div></details><details class="optional" id="extra-details"><summary>额外AI调用：个性化触达、额外判断等（可选，按需启用）</summary><div class="body"><div class="control" style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><label for="extraEnabled">额外AI调用</label><div class="entry" id="cell-extraEnabled"><select aria-label="是否启用额外AI调用" data-field="extraEnabled" id="extraEnabled"><option value="false">未启用（可选，不计额外调用）</option><option value="true">启用额外调用</option></select><small class="field-error" hidden="" id="error-extraEnabled"></small></div></div><div class="mini-fields">
 <div><label for="extraCalls">全项目额外调用次数 / 月</label><div class="entry" id="cell-extraCalls"><input aria-label="全项目额外调用次数 / 月" data-field="extraCalls" id="extraCalls" inputmode="decimal" type="text"/><small class="field-error" hidden="" id="error-extraCalls"></small></div></div><div><label for="extraInput">每次额外输入Token</label><div class="entry" id="cell-extraInput"><input aria-label="每次额外输入Token" data-field="extraInput" id="extraInput" inputmode="decimal" type="text"/><small class="field-error" hidden="" id="error-extraInput"></small></div></div><div><label for="extraOutput">每次额外输出Token</label><div class="entry" id="cell-extraOutput"><input aria-label="每次额外输出Token" data-field="extraOutput" id="extraOutput" inputmode="decimal" type="text"/><small class="field-error" hidden="" id="error-extraOutput"></small></div></div></div><p>纯模板发送、固定字段替换不调用AI，不计Token。需要AI选材、改写的触达，以及非活跃好友的调用，填在这里；已计入“每轮合计输入 / 输出”的不要重复填。SOP编写、物料制作不计入本次日常对话预算。</p></div></details><details class="optional"><summary>查看完整计算公式与算力明细</summary><div class="body scroll"><table class="formula-table"><colgroup><col style="width:25%"/><col style="width:24%"/><col style="width:51%"/></colgroup><thead><tr><th>结果</th><th style="text-align:right">全项目 / 月</th><th>公式</th></tr></thead><tbody id="detail-body"></tbody></table></div></details><details class="optional"><summary>人工工资参照（不影响AI报价，不等于已实现节省）</summary><div class="body"><div class="human-grid">
-<div class="control"><label for="humanCapacity">人工月服务人数</label><div class="entry" id="cell-humanCapacity"><input aria-label="人工月服务人数" data-field="humanCapacity" id="humanCapacity" inputmode="decimal" type="text"/><small class="field-error" hidden="" id="error-humanCapacity"></small></div></div><div class="control"><label for="humanMonthly">人工月薪 / 元</label><div class="entry" id="cell-humanMonthly"><input aria-label="人工月薪 / 元" data-field="humanMonthly" id="humanMonthly" inputmode="decimal" type="text"/><small class="field-error" hidden="" id="error-humanMonthly"></small></div></div></div><p id="human-result">待填写或导入参数</p></div></details><details class="optional"><summary>填写备注与测算边界</summary><div class="body"><textarea aria-label="测算备注" class="write-note" data-field="notes" id="notes" placeholder="可直接写下本次修改的条件、待确认事项…"></textarea><p>仅测算企微用户营销服务，不包含增量数据获取、电话员工、外呼算力及话费，也不核算新增加微建设成本。本次好友规模、活跃比例与价格均为讨论参数，不是实时数据。</p><p>账号按总好友容量，服务器按账号数量配置。每名AI服务人数是报价规格，服务质量和部署能力仍需核验。各账号不均衡分布时可手填实际配置。</p><p>Token模式以填写的输入 / 输出为准；字数模式以文字量估算。历史、规则、资料只计入实际传给AI的片段，不默认缓存优惠或无限上下文。所有用量场景均未实测。</p><p>超量费按本月超过额度的实际用量计，不将充值余额直接计入当月消费收入。额度全项目共用；未计跨月结转。等值共享时按超额加权比例分配输入 / 输出计费量，公式在上表。</p><p>公开版不预置规模、报价、成本或测算记录。请自行填写，或使用“数据操作 → 导入上次数据”载入本机参数；填写内容仅保存在当前浏览器或您主动下载的本机文件中。</p></div></details><footer><span>仅在本机计算和保存，不上传参数。保存填写版可再次打开，导出的JSON可在本机重新导入。</span><span class="status" id="save-state">空白待填 · 本机计算</span><span class="status">公开空白版 · 费用公式沿用原版</span></footer></main><input accept=".json,application/json" hidden="" id="file-input" type="file"/><div class="toast" hidden="" id="toast" role="status"></div><script id="embedded-state" type="application/json">null</script><script id="calc-core">
+<div class="control"><label for="humanCapacity">人工月服务人数</label><div class="entry" id="cell-humanCapacity"><input aria-label="人工月服务人数" data-field="humanCapacity" id="humanCapacity" inputmode="decimal" type="text"/><small class="field-error" hidden="" id="error-humanCapacity"></small></div></div><div class="control"><label for="humanMonthly">人工月薪 / 元</label><div class="entry" id="cell-humanMonthly"><input aria-label="人工月薪 / 元" data-field="humanMonthly" id="humanMonthly" inputmode="decimal" type="text"/><small class="field-error" hidden="" id="error-humanMonthly"></small></div></div></div><p id="human-result">待填写</p></div></details><details class="optional"><summary>填写备注与测算边界</summary><div class="body"><textarea aria-label="测算备注" class="write-note" data-field="notes" id="notes" placeholder="可直接写下本次修改的条件、待确认事项…"></textarea><p>仅测算企微用户营销服务，不包含增量数据获取、电话员工、外呼算力及话费，也不核算新增加微建设成本。本次好友规模、活跃比例与价格均为讨论参数，不是实时数据。</p><p>账号按总好友容量，服务器按账号数量配置。每名AI服务人数是报价规格，服务质量和部署能力仍需核验。各账号不均衡分布时可手填实际配置。</p><p>Token模式以填写的输入 / 输出为准；字数模式以文字量估算。历史、规则、资料只计入实际传给AI的片段，不默认缓存优惠或无限上下文。所有用量场景均未实测。</p><p>超量费按本月超过额度的实际用量计，不将充值余额直接计入当月消费收入。额度全项目共用；未计跨月结转。等值共享时按超额加权比例分配输入 / 输出计费量，公式在上表。</p><p>公开版不预置规模、报价、成本或测算记录。请自行填写，或从“数据操作 → 导入上次数据”载入本机参数；填写内容仅保存在浏览器或主动下载的本机文件中。</p></div></details><footer><span>仅在本机计算和保存，不上传参数。保存填写版可再次打开，导出的JSON可在本机重新导入。</span><span class="status" id="save-state">空白待填 · 本机计算</span><span class="status">逐项联算 · 业务公式沿用</span></footer></main><input accept=".json,application/json" hidden="" id="file-input" type="file"/><div class="toast" hidden="" id="toast" role="status"></div><script id="embedded-state" type="application/json">null</script><script id="calc-core">
 'use strict';
-const VERSION='4.1';
+const VERSION='4.2';
 const DEFAULTS={
  "totalFriends": "",
  "activePct": "",
@@ -60,6 +62,7 @@ const DEFAULTS={
  "recordChars": "",
  "inputPerRound": "",
  "outputPerRound": "",
+ "extraEnabled": false,
  "extraCalls": "",
  "extraInput": "",
  "extraOutput": "",
@@ -88,7 +91,6 @@ const PRESETS={
   "factor": 2
  }
 };
-let scenarioBase=null,selectedPreset=null;
 function parseNumber(v,percent=false){
  if(v===null||v===undefined||String(v).trim()==='')return {blank:true,value:null};
  if(typeof v==='number')return {blank:false,value:Number.isFinite(v)?v:null};
@@ -104,112 +106,166 @@ function parseNumber(v,percent=false){
 }
 function ceilSafe(n){const k=Math.round(n);return Math.abs(n-k)<1e-9?k:Math.ceil(n);}
 function nz(n){return Math.abs(n)<1e-7?0:n;}
-function calculate(raw){
- const s={...DEFAULTS,...raw},v={},errors=[],warnings=[];
- const add=(k,msg)=>{if(!errors.some(e=>e.field===k&&e.msg===msg))errors.push({field:k,msg});};
- function read(k,{positive=false,integer=false,optional=false,max=1e12}={}){
+function calculate(raw={}){
+ const s={...DEFAULTS,...raw},v={},errors=[],warnings=[],status={},fieldStatus={},r={partial:true};
+ const add=(field,msg)=>{if(!errors.some(e=>e.field===field&&e.msg===msg))errors.push({field,msg});fieldStatus[field]='invalid';};
+ function read(k,{positive=false,integer=false,max=1e12}={}){
   const p=parseNumber(s[k],k==='activePct');
-  if(p.blank&&optional){v[k]=null;return null;}
-  if(p.value===null){add(k,p.blank?'请填写；暂不知道的不要填0':'请输入有效数字（不带单位）');v[k]=null;return null;}
-  const n=p.value;v[k]=n;
+  if(p.blank){v[k]=null;fieldStatus[k]='pending';return;}
+  if(p.value===null){v[k]=null;add(k,'请输入有效数字（不带单位）');return;}
+  const n=p.value;v[k]=n;fieldStatus[k]='ready';
   if(n<0||positive&&n<=0)add(k,positive?'必须大于0':'不能小于0');
   if(integer&&!Number.isInteger(n))add(k,'数量必须是整数');
   if(n>max)add(k,'数值过大，请检查单位或多输入的零');
-  return n;
  }
- for(const k of ['totalFriends'])read(k,{integer:true});
- read('activePct');if(v.activePct>100)add('activePct','活跃比例应在0%—100%之间');
- for(const k of ['friendsPerAI','friendsPerAccount','accountsPerServer'])read(k,{positive:true,integer:true});
- for(const k of ['aiMonthly','accountMonthly','serverMonthly','rounds','userChars','replyChars','includedInputWan','includedOutputWan','costInput','costOutput'])read(k);
+ for(const k of ['totalFriends','manualAI','manualAccounts','manualServers'])read(k,{integer:true});
+ for(const k of ['friendsPerAI','friendsPerAccount','accountsPerServer','humanCapacity'])read(k,{positive:true,integer:true});
+ for(const k of ['activePct','aiMonthly','accountMonthly','serverMonthly','rounds','userChars','replyChars','contextChars','recordChars','inputPerRound','outputPerRound','includedInputWan','includedOutputWan','costInput','costOutput','overInput','overOutput','otherMonthly','humanMonthly'])read(k);
+ if(fieldStatus.activePct==='ready'&&v.activePct>100)add('activePct','活跃比例应在0%—100%之间');
  read('tokensPerChar',{positive:true,max:100});
- for(const k of ['manualAI','manualAccounts','manualServers'])read(k,{integer:true,optional:true});
- read('otherMonthly',{optional:true});
- read('humanCapacity',{positive:true,integer:true,optional:true});read('humanMonthly',{optional:true});
- if(!['token','chars'].includes(s.usageMode))add('usageMode','请选择有效的用量计算方式');
- if(!['separate','shared'].includes(s.poolMode))add('poolMode','请选择有效的额度规则');
- for(const k of ['oneAccountPerAI','chargeOverage'])if(typeof s[k]!=='boolean')add(k,'请选择有效选项');
- if(s.usageMode==='token'){read('inputPerRound');read('outputPerRound');}
- else {read('contextChars');read('recordChars');}
- read('extraCalls',{integer:true});
- if(v.extraCalls>0){read('extraInput');read('extraOutput');}else{v.extraInput=0;v.extraOutput=0;}
- if(s.chargeOverage){read('overInput');read('overOutput');}else{v.overInput=0;v.overOutput=0;}
- if(s.poolMode==='shared')read('creditWeight',{positive:true,max:1000});else v.creditWeight=parseNumber(s.creditWeight).value;
- if(errors.length)return {ok:false,errors,warnings:[]};
+ read('creditWeight',{positive:true,max:1000});
+ function option(k,values){v[k]=s[k];fieldStatus[k]=values.includes(s[k])?'ready':'invalid';if(fieldStatus[k]==='invalid')add(k,'请选择有效选项');}
+ option('usageMode',['token','chars']);option('poolMode',['separate','shared']);
+ for(const k of ['oneAccountPerAI','chargeOverage'])option(k,[true,false]);
+ // Older saved JSONs did not contain the explicit optional-call switch.
+ if(raw.extraEnabled===undefined&&Object.hasOwn(raw,'extraCalls'))s.extraEnabled=(parseNumber(raw.extraCalls).value||0)>0;
+ if(s.extraEnabled===undefined)s.extraEnabled=false;
+ option('extraEnabled',[true,false]);
+ if(s.extraEnabled){read('extraCalls',{integer:true});read('extraInput');read('extraOutput');}
+ else for(const k of ['extraCalls','extraInput','extraOutput']){v[k]=0;fieldStatus[k]='ready';}
+ const fs=k=>'f:'+k;
+ const getStatus=k=>k.startsWith('f:')?fieldStatus[k.slice(2)]:status[k];
+ const getValue=k=>k.startsWith('f:')?v[k.slice(2)]:r[k];
+ function node(k,deps,fn){
+  const states=deps.map(getStatus);
+  status[k]=states.includes('invalid')?'invalid':states.some(x=>x!=='ready')?'pending':'ready';
+  r[k]=null;
+  if(status[k]!=='ready')return;
+  const value=fn(...deps.map(getValue));
+  if(value===null||value===undefined){status[k]='pending';return;}
+  if(typeof value==='number'&&(!Number.isFinite(value)||Math.abs(value)>Number.MAX_SAFE_INTEGER)){
+   status[k]='invalid';return;
+  }
+  r[k]=value;
+ }
+ const copy=(k,field)=>node(k,[fs(field)],x=>x);
+ node('active',[fs('totalFriends'),fs('activePct')],(n,p)=>n*p/100);
+ node('activeFriends',['active'],x=>x);
+ node('requiredAI',['active',fs('friendsPerAI')],(n,p)=>ceilSafe(n/p));
+ function capacity(k,required,field,label,unit,reason){
+  const blank=fieldStatus[field]==='pending';
+  node(k,blank?[required]:[required,fs(field)],(need,given)=>{
+   const count=blank?need:given;
+   if(count<need){add(field,`至少需要${need.toLocaleString('zh-CN')}${unit}，${reason}`);status[k]='invalid';return null;}
+   return count;
+  });
+  // node() represents missing values as pending; retain a capacity error as invalid.
+  if(fieldStatus[field]==='invalid'){status[k]='invalid';r[k]=null;}
+ }
+ capacity('aiCount','requiredAI','manualAI','AI员工','名','当前数量不能覆盖活跃好友');
+ node('requiredAccounts',[fs('totalFriends'),fs('friendsPerAccount'),fs('oneAccountPerAI'),...(s.oneAccountPerAI?['aiCount']:[])],(n,p,one,ai)=>Math.max(ceilSafe(n/p),one?ai:0));
+ capacity('accountCount','requiredAccounts','manualAccounts','账号','个','好友容量或员工配号不足');
+ node('requiredServers',['accountCount',fs('accountsPerServer')],(n,p)=>ceilSafe(n/p));
+ capacity('serverCount','requiredServers','manualServers','服务器','台','账号承载容量不足');
+ node('calls',['active',fs('rounds')],(n,p)=>n*p);
  if(s.usageMode==='token'){
-  v.contextChars=v.inputPerRound/v.tokensPerChar-v.userChars;
-  v.recordChars=v.outputPerRound/v.tokensPerChar-v.replyChars;
-  if(v.contextChars<-1e-6)add('userChars','用户字数已超过总输入可容纳字数；增加输入Token或减少字数');
-  if(v.recordChars<-1e-6)add('replyChars','AI回复字数已超过总输出可容纳字数；增加输出Token或减少字数');
+  node('inputPerRound',[fs('usageMode'),fs('inputPerRound')],(_,x)=>x);
+  node('outputPerRound',[fs('usageMode'),fs('outputPerRound')],(_,x)=>x);
+  node('contextChars',['inputPerRound',fs('tokensPerChar'),fs('userChars')],(n,c,u)=>{
+   const chars=n/c-u;
+   if(chars<-1e-6){add('userChars','用户字数已超过总输入可容纳字数；增加输入Token或减少字数');return null;}
+   return Math.max(0,chars);
+  });
+  if(fieldStatus.userChars==='invalid'){status.contextChars='invalid';r.contextChars=null;}
+  node('recordChars',['outputPerRound',fs('tokensPerChar'),fs('replyChars')],(n,c,u)=>{
+   const chars=n/c-u;
+   if(chars<-1e-6){add('replyChars','AI回复字数已超过总输出可容纳字数；增加输出Token或减少字数');return null;}
+   return Math.max(0,chars);
+  });
+  if(fieldStatus.replyChars==='invalid'){status.recordChars='invalid';r.recordChars=null;}
  }else{
-  v.inputPerRound=(v.userChars+v.contextChars)*v.tokensPerChar;
-  v.outputPerRound=(v.replyChars+v.recordChars)*v.tokensPerChar;
+  node('inputPerRound',[fs('usageMode'),fs('userChars'),fs('contextChars'),fs('tokensPerChar')],(_,u,c,t)=>(u+c)*t);
+  node('outputPerRound',[fs('usageMode'),fs('replyChars'),fs('recordChars'),fs('tokensPerChar')],(_,u,c,t)=>(u+c)*t);
+  node('contextChars',[fs('usageMode'),fs('contextChars')],(_,x)=>x);
+  node('recordChars',[fs('usageMode'),fs('recordChars')],(_,x)=>x);
  }
- if(errors.length)return {ok:false,errors,warnings:[]};
- v.contextChars=Math.max(0,v.contextChars);v.recordChars=Math.max(0,v.recordChars);
- const active=v.totalFriends*v.activePct/100;
- const requiredAI=ceilSafe(active/v.friendsPerAI);
- const aiCount=v.manualAI===null?requiredAI:v.manualAI;
- if(aiCount<requiredAI)add('manualAI',`至少需要${requiredAI.toLocaleString('zh-CN')}名，当前数量不能覆盖活跃好友`);
- const requiredAccounts=Math.max(ceilSafe(v.totalFriends/v.friendsPerAccount),s.oneAccountPerAI?aiCount:0);
- const accountCount=v.manualAccounts===null?requiredAccounts:v.manualAccounts;
- if(accountCount<requiredAccounts)add('manualAccounts',`至少需要${requiredAccounts.toLocaleString('zh-CN')}个，好友容量或员工配号不足`);
- const requiredServers=ceilSafe(accountCount/v.accountsPerServer);
- const serverCount=v.manualServers===null?requiredServers:v.manualServers;
- if(serverCount<requiredServers)add('manualServers',`至少需要${requiredServers.toLocaleString('zh-CN')}台，账号承载容量不足`);
- if(errors.length)return {ok:false,errors,warnings:[]};
- const calls=active*v.rounds;
- const extraI=v.extraCalls*v.extraInput,extraO=v.extraCalls*v.extraOutput;
- const input=calls*v.inputPerRound+extraI,output=calls*v.outputPerRound+extraO;
- const includedInput=aiCount*v.includedInputWan*10000,includedOutput=aiCount*v.includedOutputWan*10000;
- const inputCost=input/1e6*v.costInput,outputCost=output/1e6*v.costOutput,tokenCost=inputCost+outputCost;
- const allowanceCost=includedInput/1e6*v.costInput+includedOutput/1e6*v.costOutput;
- let overInput=Math.max(0,nz(input-includedInput)),overOutput=Math.max(0,nz(output-includedOutput)),sharedFraction=0;
+ for(const [result,field] of [['extraI','extraInput'],['extraO','extraOutput']]){
+  if(fieldStatus.extraEnabled==='ready'&&!s.extraEnabled)node(result,[],()=>0);
+  else if(fieldStatus.extraCalls==='ready'&&v.extraCalls===0)node(result,[fs('extraEnabled'),fs('extraCalls')],()=>0);
+  else node(result,[fs('extraEnabled'),fs('extraCalls'),fs(field)],(_,n,p)=>n*p);
+ }
+ node('input',['calls','inputPerRound','extraI'],(n,p,e)=>n*p+e);
+ node('output',['calls','outputPerRound','extraO'],(n,p,e)=>n*p+e);
+ node('totalTokens',['input','output'],(i,o)=>i+o);
+ node('inputMillion',['input'],x=>x/1e6);node('outputMillion',['output'],x=>x/1e6);
+ node('includedInput',['aiCount',fs('includedInputWan')],(n,p)=>n*p*10000);
+ node('includedOutput',['aiCount',fs('includedOutputWan')],(n,p)=>n*p*10000);
+ node('inputCost',['input',fs('costInput')],(n,p)=>n/1e6*p);
+ node('outputCost',['output',fs('costOutput')],(n,p)=>n/1e6*p);
+ node('tokenCost',['inputCost','outputCost'],(i,o)=>i+o);
+ node('allowanceCost',['includedInput','includedOutput',fs('costInput'),fs('costOutput')],(i,o,ci,co)=>i/1e6*ci+o/1e6*co);
  if(s.poolMode==='shared'){
-  const used=input+output*v.creditWeight,cap=includedInput+includedOutput*v.creditWeight;
-  sharedFraction=used>0?Math.max(0,nz(used-cap))/used:0;
-  overInput=input*sharedFraction;overOutput=output*sharedFraction;
+  node('sharedFraction',[fs('poolMode'),'input','output','includedInput','includedOutput',fs('creditWeight')],(_,i,o,ii,io,w)=>{
+   const used=i+o*w,cap=ii+io*w;return used>0?Math.max(0,nz(used-cap))/used:0;
+  });
+  node('overInput',['input','sharedFraction'],(n,f)=>n*f);
+  node('overOutput',['output','sharedFraction'],(n,f)=>n*f);
+ }else{
+  node('sharedFraction',[fs('poolMode')],()=>0);
+  node('overInput',[fs('poolMode'),'input','includedInput'],(_,n,c)=>Math.max(0,nz(n-c)));
+  node('overOutput',[fs('poolMode'),'output','includedOutput'],(_,n,c)=>Math.max(0,nz(n-c)));
  }
- const overInputRevenue=s.chargeOverage?overInput/1e6*v.overInput:0;
- const overOutputRevenue=s.chargeOverage?overOutput/1e6*v.overOutput:0;
- const overRevenue=overInputRevenue+overOutputRevenue;
- const baseRevenue=aiCount*v.aiMonthly,revenue=baseRevenue+overRevenue;
- const accountCost=accountCount*v.accountMonthly,serverCost=serverCount*v.serverMonthly;
- const overheadMissing=v.otherMonthly===null,otherCost=overheadMissing?0:v.otherMonthly;
- const totalCost=tokenCost+accountCost+serverCost+otherCost,profit=revenue-totalCost;
- const margin=revenue>0?profit/revenue:null;
- if([input,output,includedInput,includedOutput,revenue,totalCost,allowanceCost].some(x=>!Number.isFinite(x)||Math.abs(x)>Number.MAX_SAFE_INTEGER)){
-  add('totalFriends','计算量超出安全范围，请减小数量或检查单位');return {ok:false,errors,warnings:[]};
+ for(const [key,over,price] of [['overInputRevenue','overInput','overInput'],['overOutputRevenue','overOutput','overOutput']]){
+  if(fieldStatus.chargeOverage==='ready'&&!s.chargeOverage)node(key,[],()=>0);
+  else if(status[over]==='ready'&&r[over]===0)node(key,[fs('chargeOverage'),over],()=>0);
+  else node(key,[fs('chargeOverage'),over,fs(price)],(_,n,p)=>n/1e6*p);
  }
+ node('overRevenue',['overInputRevenue','overOutputRevenue'],(i,o)=>i+o);
+ node('baseRevenue',['aiCount',fs('aiMonthly')],(n,p)=>n*p);
+ node('revenue',['baseRevenue','overRevenue'],(b,o)=>b+o);
+ node('accountCost',['accountCount',fs('accountMonthly')],(n,p)=>n*p);
+ node('serverCost',['serverCount',fs('serverMonthly')],(n,p)=>n*p);
+ node('fixedCost',['accountCost','serverCost'],(a,b)=>a+b);
+ const overheadMissing=fieldStatus.otherMonthly==='pending';r.overheadMissing=overheadMissing;
+ if(overheadMissing)node('otherCost',[],()=>0);else copy('otherCost','otherMonthly');
+ node('totalCost',['tokenCost','fixedCost','otherCost'],(t,f,o)=>t+f+o);
+ node('profit',['revenue','totalCost'],(a,b)=>a-b);
+ node('margin',['revenue','profit'],(n,p)=>n>0?p/n:null);
+ if(status.revenue==='ready'&&status.profit==='ready'&&r.revenue===0)status.margin='ready';
+ node('fullPackageCost',['allowanceCost','fixedCost','otherCost'],(t,f,o)=>t+f+o);
+ node('fullPackageProfit',['baseRevenue','fullPackageCost'],(a,b)=>a-b);
+ node('humanCount',['active',fs('humanCapacity')],(a,c)=>a/c);
+ node('humanCost',['humanCount',fs('humanMonthly')],(n,p)=>n*p);
+ node('inputReadChars',['inputPerRound',fs('tokensPerChar')],(n,c)=>n/c);
+ node('outputAllChars',['outputPerRound',fs('tokensPerChar')],(n,c)=>n/c);
+ node('monthlyUserChars',[fs('userChars'),fs('rounds')],(n,p)=>n*p);
+ node('monthlyReplyChars',[fs('replyChars'),fs('rounds')],(n,p)=>n*p);
+ node('actualFriendsPerAI',['active','aiCount'],(n,c)=>c>0?n/c:null);
+ node('activePerAccount',['active','accountCount'],(n,c)=>c>0?n/c:null);
+ node('allowancePerAI',['allowanceCost','aiCount'],(n,c)=>c>0?n/c:null);
+ for(const [key,numerator,denominator] of [['actualFriendsPerAI','active','aiCount'],['activePerAccount','active','accountCount'],['allowancePerAI','allowanceCost','aiCount']])if(status[numerator]==='ready'&&status[denominator]==='ready'&&r[denominator]===0)status[key]='ready';
+ r.perAI={};
+ for(const k of ['baseRevenue','overRevenue','revenue','inputCost','outputCost','tokenCost','accountCost','serverCost','otherCost','totalCost','profit','input','output','allowanceCost','fullPackageProfit']){
+  const key='perAI.'+k;node(key,[k,'aiCount'],(x,n)=>n>0?x/n:null);if(status[k]==='ready'&&status.aiCount==='ready'&&r.aiCount===0)status[key]='ready';r.perAI[k]=r[key];delete r[key];
+ }
+ // Keep the parsed/derived value object compatible with existing rendering and export.
+ for(const k of ['inputPerRound','outputPerRound','contextChars','recordChars'])v[k]=r[k];
  if(overheadMissing)warnings.push({type:'note',msg:'人员支持、维护等其他费用尚未填写；毛利仅按已列成本计算，不是净利润。'});
- if(!s.chargeOverage&&(overInput>0||overOutput>0))warnings.push({type:'warn',msg:'算力已经超包，但超量收费关闭：超额成本仍由零犀承担。'});
- if(s.chargeOverage&&((v.overInput<v.costInput)||(v.overOutput<v.costOutput)))warnings.push({type:'warn',msg:'有超量售价低于采购成本，请检查；超量收费不一定覆盖成本。'});
- const fullPackageCost=allowanceCost+accountCost+serverCost+otherCost;
- if(fullPackageCost>baseRevenue)warnings.push({type:'warn',msg:'基础包全部用满时，员工服务收入不足以覆盖已列成本；请检查额度或月费。'});
- if(profit<0)warnings.push({type:'warn',msg:'当前测算为亏损，请调整服务月费、内含额度或超量价格。'});
- if(v.totalFriends===0&&(accountCost>0||serverCost>0||tokenCost>0))warnings.push({type:'warn',msg:'好友数为0，但仍有资源或调用费用，请核对保留的配置。'});
- if(active>0&&v.rounds===0)warnings.push({type:'note',msg:'当前活跃好友月互动次数为0，算力只计额外调用；请确认服务量。'});
- if(s.usageMode==='token'&&(v.inputPerRound===0||v.outputPerRound===0)&&calls>0)warnings.push({type:'note',msg:'每次输入或输出为0，请确认这符合实际AI调用。'});
- const humanCount=v.humanCapacity===null?null:active/v.humanCapacity;
- const humanCost=humanCount===null||v.humanMonthly===null?null:humanCount*v.humanMonthly;
- const per=x=>aiCount>0?x/aiCount:null;
- return {ok:true,errors:[],warnings,v,active,requiredAI,aiCount,requiredAccounts,accountCount,requiredServers,serverCount,
- calls,input,output,totalTokens:input+output,includedInput,includedOutput,overInput,overOutput,sharedFraction,
- inputPerRound:v.inputPerRound,outputPerRound:v.outputPerRound,contextChars:v.contextChars,recordChars:v.recordChars,
- inputCost,outputCost,tokenCost,allowanceCost,baseRevenue,overInputRevenue,overOutputRevenue,overRevenue,revenue,
- accountCost,serverCost,otherCost,overheadMissing,totalCost,profit,margin,fullPackageCost,
- fullPackageProfit:baseRevenue-fullPackageCost,humanCount,humanCost,
- inputReadChars:v.inputPerRound/v.tokensPerChar,outputAllChars:v.outputPerRound/v.tokensPerChar,
- monthlyUserChars:v.userChars*v.rounds,monthlyReplyChars:v.replyChars*v.rounds,
- perAI:{baseRevenue:per(baseRevenue),overRevenue:per(overRevenue),revenue:per(revenue),inputCost:per(inputCost),outputCost:per(outputCost),
- tokenCost:per(tokenCost),accountCost:per(accountCost),serverCost:per(serverCost),otherCost:per(otherCost),totalCost:per(totalCost),
- profit:per(profit),input:per(input),output:per(output),allowanceCost:per(allowanceCost),fullPackageProfit:per(baseRevenue-fullPackageCost)}};
+ if(!s.chargeOverage&&((r.overInput||0)>0||(r.overOutput||0)>0))warnings.push({type:'warn',msg:'算力已经超包，但超量收费关闭：超额成本仍由零犀承担。'});
+ if(s.chargeOverage&&((fieldStatus.overInput==='ready'&&fieldStatus.costInput==='ready'&&v.overInput<v.costInput)||(fieldStatus.overOutput==='ready'&&fieldStatus.costOutput==='ready'&&v.overOutput<v.costOutput)))warnings.push({type:'warn',msg:'有超量售价低于采购成本，请检查；超量收费不一定覆盖成本。'});
+ if(status.fullPackageCost==='ready'&&status.baseRevenue==='ready'&&r.fullPackageCost>r.baseRevenue)warnings.push({type:'warn',msg:'基础包全部用满时，员工服务收入不足以覆盖已列成本；请检查额度或月费。'});
+ if(status.profit==='ready'&&r.profit<0)warnings.push({type:'warn',msg:'当前测算为亏损，请调整服务月费、内含额度或超量价格。'});
+ if(v.totalFriends===0&&((r.accountCost||0)>0||(r.serverCost||0)>0||(r.tokenCost||0)>0))warnings.push({type:'warn',msg:'好友数为0，但仍有资源或调用费用，请核对保留的配置。'});
+ if(status.active==='ready'&&r.active>0&&fieldStatus.rounds==='ready'&&v.rounds===0)warnings.push({type:'note',msg:'当前活跃好友月互动次数为0，算力只计额外调用；请确认服务量。'});
+ if(s.usageMode==='token'&&(r.inputPerRound===0||r.outputPerRound===0)&&r.calls>0)warnings.push({type:'note',msg:'每次输入或输出为0，请确认这符合实际AI调用。'});
+ return {...r,ok:['revenue','totalCost','profit','margin'].every(k=>status[k]==='ready'),errors,warnings,v,status,fieldStatus,pendingFields:Object.keys(fieldStatus).filter(k=>fieldStatus[k]==='pending')};
 }
 if(typeof module!=='undefined'&&module.exports)module.exports={VERSION,DEFAULTS,PRESETS,calculate,parseNumber};
 
 const STORE_KEY='lx-wecom-pricing-public-blank-v1';
 const $=id=>document.getElementById(id);
 let state={...DEFAULTS},lastResult=null,loadedNote='空白待填参数';
-let reverseError=null;
+let reverseError=null,scenarioBase=null,selectedPreset=null;
 function safeState(obj){
  if(!obj||typeof obj!=='object'||Array.isArray(obj))throw Error('未找到有效的参数对象');
  const out={...DEFAULTS};
@@ -219,9 +275,11 @@ function safeState(obj){
   if(k==='notes'){out[k]=typeof x==='string'?x.slice(0,10000):'';continue;}
   if(typeof DEFAULTS[k]==='boolean'){if(typeof x!=='boolean')throw Error('选项格式错误：'+k);out[k]=x;}
   else if(['usageMode','poolMode'].includes(k)){if(typeof x!=='string')throw Error('计算方式格式错误');out[k]=x;}
-  else if(x===null||typeof x==='number'||typeof x==='string'){out[k]=x===null?'':x;}
+  else if(x===null||typeof x==='number'||typeof x==='string')out[k]=x===null?'':x;
   else throw Error('参数格式错误：'+k);
  }
+ // Older exports represented the optional group by a nonzero call count.
+ if(!Object.prototype.hasOwnProperty.call(obj,'extraEnabled'))out.extraEnabled=(parseNumber(obj.extraCalls).value??0)>0;
  return out;
 }
 try{
@@ -231,10 +289,18 @@ try{
 }catch(e){loadedNote='空白待填参数';}
 function f(x,d=2){return x===null||x===undefined||!Number.isFinite(x)?'—':x.toLocaleString('zh-CN',{minimumFractionDigits:d,maximumFractionDigits:d});}
 function n(x,d=2){return x===null||x===undefined||!Number.isFinite(x)?'—':x.toLocaleString('zh-CN',{maximumFractionDigits:d});}
-function pct(x){return x===null?'—':f(x*100)+'%';}
+function pct(x){return x===null||x===undefined?'无收入':f(x*100)+'%';}
 function inputText(x){if(x===null||x===undefined||x==='')return '';return typeof x==='number'?String(Number(x.toFixed(8))):String(x);}
-function text(id,value){$(id).textContent=value;}
+function text(id,value){const el=$(id);if(el)el.textContent=value;}
 function toast(msg){text('toast',msg);$('toast').hidden=false;clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('toast').hidden=true,3500);}
+function resultStatus(r,key){return r?.status?.[key]||(Number.isFinite(r?.[key])?'ready':'pending');}
+function joinStatus(r,keys){const values=keys.map(k=>resultStatus(r,k));return values.includes('invalid')?'invalid':values.every(x=>x==='ready')?'ready':'pending';}
+function statusText(status){return status==='invalid'?'参数有误':'待填写';}
+function decorateResult(el,status){if(!el)return;el.classList.toggle('result-invalid',status==='invalid');el.classList.toggle('result-pending',status==='pending');el.dataset.resultStatus=status;}
+function displayResultKey(el,r,key,formatter=f,value=r?.[key],status=resultStatus(r,key)){
+ if(typeof el==='string')el=$(el);if(!el)return;
+ el.textContent=status==='ready'?formatter(value):statusText(status);decorateResult(el,status);
+}
 const summaryRows=[
  ['baseRevenue','AI员工服务收入'],['overRevenue','超量算力收入'],['revenue','营收合计','total'],
  ['tokenCost','算力成本'],['fixedCost','企微账号＋服务器'],['otherCost','其他交付费用'],
@@ -244,15 +310,15 @@ function buildSummary(){
  const t=$('summary-body');t.textContent='';
  for(const [key,label,cls] of summaryRows){const tr=document.createElement('tr');if(cls)tr.className=cls;
  const a=document.createElement('td');a.textContent=label;a.id='summary-label-'+key;tr.appendChild(a);
- for(const kind of ['all','per']){const td=document.createElement('td');td.className='num';td.id='summary-'+kind+'-'+key;td.textContent='—';tr.appendChild(td);}t.appendChild(tr);}
+ for(const kind of ['all','per']){const td=document.createElement('td');td.className='num';td.id='summary-'+kind+'-'+key;td.textContent='待填写';tr.appendChild(td);}t.appendChild(tr);}
 }
 const detailRows=[
- ['input','实际输入Token','活跃好友数 × 月互动次数 × 每次输入 ＋ 额外调用次数 × 额外输入'],
- ['output','实际输出Token','活跃好友数 × 月互动次数 × 每次输出 ＋ 额外调用次数 × 额外输出'],
+ ['input','实际输入Token','活跃好友数 × 月互动次数 × 每次输入 ＋ 已启用的额外调用次数 × 额外输入'],
+ ['output','实际输出Token','活跃好友数 × 月互动次数 × 每次输出 ＋ 已启用的额外调用次数 × 额外输出'],
  ['includedInput','基础包内含输入Token','计费AI员工数 × 每名内含输入额度 × 10,000'],
  ['includedOutput','基础包内含输出Token','计费AI员工数 × 每名内含输出额度 × 10,000'],
  ['overInput','超量输入Token',''],['overOutput','超量输出Token',''],
- ['overRevenue','超量收费收入','超量输入 ÷ 100万 × 输入售价 ＋ 超量输出 ÷ 100万 × 输出售价；关闭收费时为0'],
+ ['overRevenue','超量收费收入','仅超量输入 / 输出按各自售价收费；未超量或关闭收费时为0'],
  ['tokenCost','实际算力成本','全部实际输入 ÷ 100万 × 输入采购价 ＋ 全部实际输出 ÷ 100万 × 输出采购价'],
  ['fullPackageProfit','基础包全用满时的毛利','仅员工收入 − 内含算力全部用满的采购成本 − 账号 − 服务器 − 已填其他费用；不含超量'],
  ['profit','当前测算毛利','员工收入 ＋ 超量收入 − 实际算力成本 − 账号 − 服务器 − 已填其他费用']
@@ -260,7 +326,7 @@ const detailRows=[
 function buildDetails(){
  const t=$('detail-body');t.textContent='';
  for(const [key,label,formula] of detailRows){const tr=document.createElement('tr');
- const a=document.createElement('td');a.textContent=label;const b=document.createElement('td');b.id='detail-'+key;b.className='num';b.textContent='—';
+ const a=document.createElement('td');a.textContent=label;const b=document.createElement('td');b.id='detail-'+key;b.className='num';b.textContent='待填写';
  const c=document.createElement('td');c.id='formula-'+key;c.className='explain';c.textContent=formula;tr.append(a,b,c);t.appendChild(tr);}
 }
 function syncInputs(){
@@ -269,213 +335,195 @@ function syncInputs(){
   el.value=typeof state[k]==='boolean'?String(state[k]):inputText(state[k]);
  });
 }
-function setDerivedControl(k,on,val){
- const el=$(k);el.disabled=on;$('cell-'+k).classList.toggle('derived',on);
- if(on)el.value=val===null||val===undefined?'':n(val,2);
+function setDerivedControl(k,on,r){
+ const el=$(k);if(!el)return;const status=resultStatus(r,k);el.disabled=on;$('cell-'+k).classList.toggle('derived',on);
+ if(on){el.value=status==='ready'?inputText(r[k]):'';el.placeholder=statusText(status);decorateResult($('cell-'+k),status);}
 }
-function matchingPreset(r){return r?.ok?selectedPreset:null;}
-function isBlankDraft(){return Object.keys(DEFAULTS).filter(k=>!['usageMode','poolMode','notes','oneAccountPerAI','chargeOverage'].includes(k)).every(k=>state[k]===''||state[k]===null||state[k]===undefined);}
+function sharedMode(){return state.poolMode==='shared';}
 function showModes(r){
  const token=state.usageMode==='token';
- for(const k of ['contextChars','recordChars'])setDerivedControl(k,token,r&&r.ok?r[k]:null);
- for(const k of ['inputPerRound','outputPerRound'])setDerivedControl(k,!token,r&&r.ok?r[k]:null);
+ for(const k of ['contextChars','recordChars'])setDerivedControl(k,token,r);
+ for(const k of ['inputPerRound','outputPerRound'])setDerivedControl(k,!token,r);
  $('chars-input-row').hidden=token;
  text('input-field-label',token?'每次总输入':'换算后每次输入');
  text('output-field-label',token?'每次总输出':'换算后每次输出');
- text('mode-hint',token?'填写下方输入、输出Token，直接计算费用。切换到字数方式时保留等价用量，不会凭空改变金额。':'请直接改下面的用户字数、AI回复字数、背景和记录字数；Token与费用立即联动。切换时沿用上一组等价用量，金额暂时相同。');
+ text('mode-hint',token?'填写输入、输出Token即可计算用量和费用；字数与换算系数仅供字数说明，不影响Token费用。':'填写用户字数、AI回复、背景、记录和换算系数，分别换算输入与输出Token。');
  document.querySelectorAll('[data-mode]').forEach(b=>{const on=b.dataset.mode===state.usageMode;b.classList.toggle('selected',on);b.setAttribute('aria-pressed',String(on));});
  text('usage-status',token?'当前：直接填Token':'当前：按字数估算');
  $('shared-row').hidden=!sharedMode();
- text('usage-calculation',token?'输入还包括本次实际读取的背景；输出还包括本次生成的记录。纯模板发送未调用AI，不计Token。':'输入＝（用户发言＋背景）×系数；输出＝（AI回复＋记录）×系数。字数换算是预算假设，不能当作模型实测。');
- const shared=state.poolMode==='shared';
- $('creditWeight').disabled=!shared;$('cell-creditWeight').classList.toggle('derived',!shared);
+ text('usage-calculation',token?'输入包括实际读取的背景；输出包括实际生成的记录。纯模板发送未调用AI，不计Token。':'输入＝（用户发言＋背景）×系数；输出＝（AI回复＋记录）×系数。字数换算仅是预算假设。');
+ const shared=sharedMode();$('creditWeight').disabled=!shared;$('cell-creditWeight').classList.toggle('derived',!shared);
  for(const k of ['overInput','overOutput']){$(k).disabled=!state.chargeOverage;$('cell-'+k).classList.toggle('derived',!state.chargeOverage);}
+ for(const k of ['extraCalls','extraInput','extraOutput']){$(k).disabled=!state.extraEnabled;$('cell-'+k).classList.toggle('derived',!state.extraEnabled);}
  text('pool-note',shared?'共享模式：用量按“输入＋输出×共享系数”抵扣；仅超出比例对应的输入 / 输出另收费。':'分别核算：超量输入＝MAX(0,实际输入−内含输入)；输出同理，不互相抵扣。');
- const matched=matchingPreset(r);
- document.querySelectorAll('[data-preset]').forEach(b=>{const on=matched===b.dataset.preset;b.classList.toggle('current',on);b.setAttribute('aria-pressed',String(on));});
- text('case-state',r?.ok?`${matched?PRESETS[matched].name:'自定义用量'} · 每位活跃好友每月 ${n(r.v.rounds)} 次 · 每次输入 ${n(r.inputPerRound)} / 输出 ${n(r.outputPerRound)} Token · 情景仅按本次基准互动次数作相对假设，不改报价和包内额度。`:isBlankDraft()?'空白待填：请填写参数或导入本机JSON。情景按您填写的互动次数作相对假设，不含任何预置报价。':'当前参数有误；请修正红色提示后查看测算。');
+ document.querySelectorAll('[data-preset]').forEach(b=>{const on=selectedPreset===b.dataset.preset;b.classList.toggle('current',on);b.setAttribute('aria-pressed',String(on));});
+ const rounds=r.fieldStatus?.rounds==='ready'?n(r.v.rounds):statusText(r.fieldStatus?.rounds||'pending');
+ const input=resultStatus(r,'inputPerRound')==='ready'?n(r.inputPerRound):statusText(resultStatus(r,'inputPerRound'));
+ const output=resultStatus(r,'outputPerRound')==='ready'?n(r.outputPerRound):statusText(resultStatus(r,'outputPerRound'));
+ text('case-state',`${selectedPreset?PRESETS[selectedPreset].name:'自定义用量'} · 每位活跃好友每月 ${rounds} 次 · 每次输入 ${input} / 输出 ${output} Token · 情景仅改变月处理次数，不改报价和包内额度。`);
 }
-
-function clearErrors(){document.querySelectorAll('.entry.invalid').forEach(e=>e.classList.remove('invalid'));document.querySelectorAll('.field-error').forEach(e=>{e.hidden=true;e.textContent='';});document.querySelectorAll('[aria-invalid]').forEach(e=>e.removeAttribute('aria-invalid'));}
-function addMessage(m,isError=false){const box=document.createElement('div');box.className='message '+(isError?'error':m.type||'note');if(isError){const b=document.createElement('button');b.type='button';b.textContent=m.label+'：'+m.msg;b.onclick=()=>{const el=$(m.field);if(el){let p=el.parentElement;while(p){if(p.tagName==='DETAILS')p.open=true;p=p.parentElement;}el.focus();el.scrollIntoView({block:'center',behavior:'smooth'});}};box.appendChild(b);}else box.textContent=m.msg;$('messages').appendChild(box);}
-function sharedMode(){return state.poolMode==='shared';}
+function clearErrors(){
+ document.querySelectorAll('.entry.invalid').forEach(e=>e.classList.remove('invalid'));
+ document.querySelectorAll('.field-error').forEach(e=>{e.hidden=true;e.textContent='';});
+ document.querySelectorAll('[aria-invalid]').forEach(e=>e.removeAttribute('aria-invalid'));
+ document.querySelectorAll('.result-invalid,.result-pending').forEach(e=>e.classList.remove('result-invalid','result-pending'));
+}
+function addMessage(m,isError=false){
+ const box=document.createElement('div');box.className='message '+(isError?'error':m.type||'note');
+ if(isError){const b=document.createElement('button');b.type='button';b.textContent=m.label+'：'+m.msg;b.onclick=()=>{const el=$(m.field);if(el){let p=el.parentElement;while(p){if(p.tagName==='DETAILS')p.open=true;p=p.parentElement;}el.focus();el.scrollIntoView({block:'center',behavior:'smooth'});}};box.appendChild(b);}else box.textContent=m.msg;
+ $('messages').appendChild(box);
+}
+function markInputError(e){
+ const field=$(e.field),cell=$('cell-'+e.field),err=$('error-'+e.field);
+ if(field)field.setAttribute('aria-invalid','true');if(cell)cell.classList.add('invalid');if(err){err.hidden=false;err.textContent=e.msg;}
+ addMessage({...e,label:field?.getAttribute('aria-label')||e.field},true);
+}
 function renderDashboard(r){
- const keys=['revenue','totalCost','profit','margin'];
- for(const key of keys){
-  const el=$('kpi-'+key),sub=$('kpi-sub-'+key);
-  el.textContent=r.ok?(key==='margin'?pct(r.margin):f(r[key])):'—';
-  el.classList.toggle('negative',!!(r.ok&&(key==='profit'||key==='margin')&&r[key]<0));
-  if(!r.ok){sub.textContent=isBlankDraft()?'待填写或导入参数':'请先修正填写错误';continue;}
-  if(key==='margin')sub.textContent=r.overheadMissing?'按已列成本，其他费用未填':'按当前已填写的全部费用';
-  else sub.textContent='每名AI '+f(r.perAI[key])+' 元 / 月';
- }
- text('package-check',r.ok?'基础包全用满：毛利 '+f(r.fullPackageProfit)+' 元 / 月':'基础包全用满：—');
- $('package-check').classList.toggle('negative',!!(r.ok&&r.fullPackageProfit<0));
-}
-function render(){
- let r;
- try{r=calculate(state);}catch(e){r={ok:false,errors:[{field:'totalFriends',msg:'计算失败，请检查参数或恢复默认'}],warnings:[]};}
- if(reverseError){r={ok:false,errors:[reverseError],warnings:[]};}
- lastResult=r;renderDashboard(r);clearErrors();$('messages').textContent='';showModes(r);
- syncCountControls(r); syncReverseControls(r);
- if(!r.ok){
-  const blank=isBlankDraft();$('conclusion').classList.toggle('bad',!blank);text('conclusion',blank?'请填写参数或导入本机JSON；填写完整后自动计算。':`有 ${r.errors.length} 处参数需要修改，结果已暂停更新，避免误读旧数字。`);text('scale',blank?'尚未填写规模、报价与成本。':'请修改红色格；自动计算格不可直接覆盖。');
-  for(const [key] of summaryRows)for(const kind of ['all','per']){text('summary-'+kind+'-'+key,'—');$('summary-'+kind+'-'+key).classList.remove('negative');}
-  document.querySelectorAll('[data-output]').forEach(e=>e.textContent='—');for(const [key] of detailRows)text('detail-'+key,'—');text('human-result','参数未通过检查，暂不计算。');
-  for(const e of (blank?[]:r.errors)){const field=$(e.field);const cell=$('cell-'+e.field);const err=$('error-'+e.field);if(field)field.setAttribute('aria-invalid','true');if(cell)cell.classList.add('invalid');if(err){err.hidden=false;err.textContent=e.msg;}addMessage({...e,label:field?.getAttribute('aria-label')||e.field},true);}
-  return;
- }
- const fixedCost=r.accountCost+r.serverCost;
- const exceeded=r.overInput>1e-5||r.overOutput>1e-5;
- $('conclusion').classList.toggle('bad',r.profit<0);
- const sign=r.profit>=0?'可覆盖已列成本':'未覆盖已列成本';
- text('conclusion',`${r.profit<0?'当前费用超过收入。':'当前收入可覆盖已列成本。'}${exceeded?(state.chargeOverage?'已超基础算力包，按超量单价计入收入。':'已超基础算力包，但未收超量费。'):'未超基础算力包，无额外算力收费。'}`);
- text('scale',`总好友 ${n(r.v.totalFriends)} 人　｜　活跃 ${n(r.v.activePct)}% = ${n(r.active)} 人　｜　AI员工 ${n(r.aiCount)} 名　｜　账号 ${n(r.accountCount)} 个　｜　服务器 ${n(r.serverCount)} 台`);
- for(const [key] of summaryRows){
-  let all,per;
-  if(key==='margin'){all=per=pct(r.margin);}else if(key==='otherCost'&&r.overheadMissing){all=per='未填 / 未计';}
-  else{all=f(key==='fixedCost'?fixedCost:r[key]);per=f(key==='fixedCost'?(r.aiCount?fixedCost/r.aiCount:null):r.perAI[key]);}
-  text('summary-all-'+key,all);text('summary-per-'+key,per);
-  for(const kind of ['all','per'])$('summary-'+kind+'-'+key).classList.toggle('negative',(key==='profit'||key==='margin')&&r.profit<0);
- }
- text('summary-label-otherCost',r.overheadMissing?'其他交付费用（未核算）':'其他交付费用');
- const d={active:r.active,aiCount:r.aiCount,calls:r.calls,inputReadChars:r.inputReadChars,outputAllChars:r.outputAllChars,
- allowancePerAI:r.aiCount?r.allowanceCost/r.aiCount:null,accountCount:r.accountCount,serverCount:r.serverCount,fixedCost,
- actualFriendsPerAI:r.aiCount?r.active/r.aiCount:null,activePerAccount:r.accountCount?r.active/r.accountCount:null,
- accountCostPerAI:r.perAI.accountCost,serverCostPerAI:r.perAI.serverCost,totalCost:r.totalCost,
- inputMillion:r.input/1e6,outputMillion:r.output/1e6};
- document.querySelectorAll('[data-output]').forEach(e=>e.textContent=n(d[e.dataset.output]));
- for(const [key] of detailRows){const isToken=['input','output','includedInput','includedOutput','overInput','overOutput'].includes(key);text('detail-'+key,isToken?n(r[key]/1e6,4)+' 百万Token':f(r[key])+' 元');$('detail-'+key).classList.toggle('negative',(key==='profit'||key==='fullPackageProfit')&&r[key]<0);}
- if(state.poolMode==='separate'){
-  text('formula-overInput','MAX(0, 实际输入Token − 全项目内含输入Token)');text('formula-overOutput','MAX(0, 实际输出Token − 全项目内含输出Token)');
- }else{
-  const w=r.v.creditWeight;
-  text('formula-overInput',`超额比例＝MAX(0, 输入＋输出×${n(w)}−内含输入−内含输出×${n(w)}) ÷ (输入＋输出×${n(w)})；超量输入＝实际输入×该比例`);
-  text('formula-overOutput','超量输出＝实际输出×相同超额比例；共享系数只约定额度抵扣，不代表服务售价。');
- }
- r.warnings.filter(m=>!m.msg.startsWith('人员支持、维护等其他费用尚未填写')).forEach(m=>addMessage(m));
- text('human-result',r.humanCost===null?'填写人工服务人数和月薪后，可得到同量工资参照；不会影响AI报价。':`同量人工工作量 ${n(r.humanCount)} 人 × 月薪 ${n(r.v.humanMonthly)} 元＝${f(r.humanCost)} 元 / 月。只是工资参照，不等于实际裁员或已实现节省。`);
-}
-function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(state));text('save-state','本机已保存 · 所有结果联算');}catch(e){text('save-state','未自动保存，请点击“保存填写版”');}}
-function onChange(el){const k=el.dataset.field;if(!k)return;scenarioBase=null;selectedPreset=null;const before=lastResult;reverseError=null;
- if(k==='usageMode'){
-  if(lastResult&&lastResult.ok){for(const x of ['inputPerRound','outputPerRound','contextChars','recordChars'])state[x]=lastResult[x];}
-  state[k]=el.value;syncInputs();
- }else if(typeof DEFAULTS[k]==='boolean')state[k]=el.value==='true';else state[k]=el.value;
- render();persist(); updateChangeNote(k);announceChange(el.getAttribute('aria-label')||k,before,k==='usageMode'?'mode':'edit');
-}
-function announceChange(label,before,kind='edit'){
- const el=$('action-feedback'),r=lastResult;
- el.hidden=false;el.classList.toggle('bad',!r?.ok);
- if(!r?.ok){el.textContent='参数未通过检查，结果暂停；请修改红色格。';return;}
- const same=before?.ok&&['revenue','totalCost','profit'].every(k=>Math.abs(before[k]-r[k])<0.005);
- if(kind==='mode'){
-  el.textContent=`已切换为${state.usageMode==='token'?'直接填Token':'按对话字数估算'}。同一用量只换填写方式，金额不变；修改相应输入才会重新改变费用。`;
- }else if(same){
-  let reason='该项本次未改变计费结果。';
-  if(label==='是否收超量费'&&r.overInput<1e-5&&r.overOutput<1e-5)reason='当前没有超出包内额度，打开或关闭超量收费都不会增加收入。';
-  else if(label==='账号配置口径')reason='当前两种规则所需账号数量相同，因此费用不变。';
-  else if(label==='额度扣减方式')reason='两种规则在当前用量下金额相同；超出额度后可能不同。';
-  else if(kind==='preset')reason='这与当前用量相同，结果保持不变。';
-  el.textContent=`${label}：${reason}`;
- }else if(before?.ok){
-  el.textContent=`${label}｜月成本 ${f(before.totalCost)} → ${f(r.totalCost)} 元；月毛利 ${f(before.profit)} → ${f(r.profit)} 元。`;
- }else el.textContent=`${label}已重新计算：月成本 ${f(r.totalCost)} 元，月毛利 ${f(r.profit)} 元。`;
+ const revenueLabel=$('kpi-revenue').parentElement.querySelector('.label');
+ const baseOnly=resultStatus(r,'revenue')==='pending'&&resultStatus(r,'baseRevenue')==='ready';
+ if(revenueLabel)revenueLabel.textContent=baseOnly?'月基础收入 / 元（总营收待算）':'月营收 / 元';
  for(const key of ['revenue','totalCost','profit','margin']){
-  const kpi=$('kpi-'+key);kpi.classList.remove('changed-kpi');
-  if(before?.ok&&Math.abs((before[key]??0)-(r[key]??0))>1e-8){void kpi.offsetWidth;kpi.classList.add('changed-kpi');}
+  const el=$('kpi-'+key),sub=$('kpi-sub-'+key),displayKey=key==='revenue'&&baseOnly?'baseRevenue':key,status=resultStatus(r,displayKey);
+  displayResultKey(el,r,displayKey,key==='margin'?pct:f);
+  el.classList.toggle('negative',status==='ready'&&(key==='profit'||key==='margin')&&r[key]<0);
+  if(key==='revenue'&&baseOnly){sub.textContent='已确定基础收入；总营收待用量、额度及超量条件确认';continue;}
+  if(status!=='ready'){sub.textContent=status==='invalid'?'相关参数有误，请查看红色提示':'相关参数待填写；其他已知结果继续联算';continue;}
+  if(key==='margin')sub.textContent=r.overheadMissing?'按已列成本，其他费用未填':'按当前已填写的全部费用';
+  else sub.textContent=joinStatus(r,[key,'aiCount'])==='ready'&&r.aiCount>0?'每名AI '+f(r.perAI?.[key])+' 元 / 月':'全项目 / 月';
  }
+ displayResultKey('package-check',r,'fullPackageProfit',x=>'基础包全用满：毛利 '+f(x)+' 元 / 月');
+ $('package-check').classList.toggle('negative',resultStatus(r,'fullPackageProfit')==='ready'&&r.fullPackageProfit<0);
 }
-function switchUsageMode(mode){
- const before=lastResult;reverseError=null;
- if(before?.ok)for(const k of ['inputPerRound','outputPerRound','contextChars','recordChars'])state[k]=before[k];
- state.usageMode=mode;syncInputs();render();persist();announceChange('填写方式',before,'mode');
-}
-function download(name,textValue,mime){const url=URL.createObjectURL(new Blob([textValue],{type:mime}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
-function resultExport(){if(!lastResult||!lastResult.ok)return {status:'invalid',errors:lastResult?.errors||[]};const r=lastResult;return {status:'calculated',period:'monthly',currency:'CNY',activeFriends:r.active,aiEmployees:r.aiCount,accounts:r.accountCount,servers:r.serverCount,inputTokens:r.input,outputTokens:r.output,overInputTokens:r.overInput,overOutputTokens:r.overOutput,baseRevenue:r.baseRevenue,overageRevenue:r.overRevenue,revenue:r.revenue,tokenCost:r.tokenCost,accountCost:r.accountCost,serverCost:r.serverCost,otherCost:r.overheadMissing?null:r.otherCost,listedCost:r.totalCost,listedGrossProfit:r.profit,listedGrossMargin:r.margin,warning:r.warnings.map(x=>x.msg)};}
-
 const COUNT_KEYS={manualAI:'aiCount',manualAccounts:'accountCount',manualServers:'serverCount'};
 const REVERSE_KEYS={activeFriends:'active',baseRevenueEdit:'baseRevenue',accountCostEdit:'accountCost',serverCostEdit:'serverCost'};
+const REVERSE_TARGETS={activeFriends:'activePct',baseRevenueEdit:'aiMonthly',accountCostEdit:'accountMonthly',serverCostEdit:'serverMonthly'};
 function syncCountControls(r){
  for(const [k,resultKey] of Object.entries(COUNT_KEYS)){
-  const manual=state[k]!==''&&state[k]!==null&&state[k]!==undefined;
-  $('cell-'+k).classList.toggle('manual',manual);
-  text('tag-'+k,manual?'手填配置':'自动联算');
-  const btn=document.querySelector('[data-auto="'+k+'"]');btn.hidden=!manual;
-  if(document.activeElement!==$(k)) $(k).value=manual?inputText(state[k]):r.ok?n(r[resultKey],0):'';
+  const manual=state[k]!==''&&state[k]!==null&&state[k]!==undefined,status=resultStatus(r,resultKey);
+  $('cell-'+k).classList.toggle('manual',manual);decorateResult($('cell-'+k),status);
+  text('tag-'+k,manual?'手填配置':'自动联算');document.querySelector('[data-auto="'+k+'"]').hidden=!manual;
+  if(document.activeElement!==$(k))$(k).value=manual?inputText(state[k]):status==='ready'?n(r[resultKey],0):'';
+  $(k).placeholder=statusText(status);
  }
 }
 function syncReverseControls(r){
  for(const [k,resultKey] of Object.entries(REVERSE_KEYS)){
-  if(document.activeElement===$(k))continue;
-  if(!r.ok&&reverseError?.field===k)continue;
-  $(k).value=r.ok?n(r[resultKey],2):'';
+  const status=reverseError?.field===k?reverseError.status:resultStatus(r,resultKey);decorateResult($('cell-'+k),status);$(k).placeholder=statusText(status);
+  if(document.activeElement===$(k)||reverseError?.field===k)continue;
+  $(k).value=status==='ready'?n(r[resultKey],2):'';
  }
+}
+function render(){
+ let r;const effective=reverseError?.override?{...state,[reverseError.target]:reverseError.override}:state;
+ try{r=calculate(effective);}catch(e){console.error(e);r={ok:false,status:{},fieldStatus:{},perAI:{},v:{},errors:[],warnings:[{msg:'计算暂不可用，请重新填写或导入参数。',type:'error'}]};}
+ if(reverseError?.status==='invalid')r.errors=[...(r.errors||[]).filter(e=>e.field!==reverseError.target),{field:reverseError.field,msg:reverseError.msg}];
+ lastResult=r;clearErrors();$('messages').textContent='';showModes(r);renderDashboard(r);syncCountControls(r);syncReverseControls(r);
+ const profitStatus=resultStatus(r,'profit');$('conclusion').classList.toggle('bad',profitStatus==='invalid'||(profitStatus==='ready'&&r.profit<0));
+ const overStatus=joinStatus(r,['overInput','overOutput']),exceeded=overStatus==='ready'&&(r.overInput>1e-5||r.overOutput>1e-5);
+ let conclusion=profitStatus==='ready'?(r.profit<0?'当前费用超过收入。':'当前收入可覆盖已列成本。'):'已按依赖关系计算已填写的部分；未填项目显示待填写。';
+ if((r.errors||[]).length)conclusion+=' 请修正红色提示，其他结果继续更新。';
+ if(overStatus==='ready')conclusion+=exceeded?(state.chargeOverage?'已超基础算力包。':'已超基础算力包，但未收超量费。'):'未超基础算力包，无额外算力收费。';
+ text('conclusion',conclusion);
+ const value=(key,formatter=n)=>resultStatus(r,key)==='ready'?formatter(r[key]):statusText(resultStatus(r,key));
+ const friends=r.fieldStatus?.totalFriends==='ready'?n(r.v.totalFriends):statusText(r.fieldStatus?.totalFriends||'pending');
+ text('scale',`总好友 ${friends} 人　｜　活跃 ${value('active')} 人　｜　AI员工 ${value('aiCount')} 名　｜　账号 ${value('accountCount')} 个　｜　服务器 ${value('serverCount')} 台`);
+ const fixedStatus=joinStatus(r,['accountCost','serverCost']),fixedCost=fixedStatus==='ready'?r.accountCost+r.serverCost:null;
+ for(const [key] of summaryRows){
+  const status=key==='fixedCost'?fixedStatus:resultStatus(r,key),all=key==='fixedCost'?fixedCost:r[key];
+  const perStatus=key==='margin'?status:joinStatus({status:{...r.status,fixedCost:fixedStatus}},[key,'aiCount']);
+  const formatter=key==='margin'?pct:f;
+  displayResultKey('summary-all-'+key,r,key,formatter,all,status);
+  displayResultKey('summary-per-'+key,r,key,formatter,key==='margin'?all:r.aiCount>0?all/r.aiCount:null,perStatus);
+  if(key==='otherCost'&&r.overheadMissing){text('summary-all-'+key,'未填 / 未计');text('summary-per-'+key,'未填 / 未计');}
+  for(const kind of ['all','per'])$('summary-'+kind+'-'+key).classList.toggle('negative',status==='ready'&&(key==='profit'||key==='margin')&&r[key]<0);
+ }
+ text('summary-label-otherCost',r.overheadMissing?'其他交付费用（未核算）':'其他交付费用');
+ const aliases={
+  fixedCost:{keys:['accountCost','serverCost'],get:()=>fixedCost},
+  allowancePerAI:{keys:['allowanceCost','aiCount'],get:()=>r.aiCount>0?r.allowanceCost/r.aiCount:null},
+  actualFriendsPerAI:{keys:['active','aiCount'],get:()=>r.aiCount>0?r.active/r.aiCount:null},
+  activePerAccount:{keys:['active','accountCount'],get:()=>r.accountCount>0?r.active/r.accountCount:null},
+  accountCostPerAI:{keys:['accountCost','aiCount'],get:()=>r.aiCount>0?r.accountCost/r.aiCount:null},
+  serverCostPerAI:{keys:['serverCost','aiCount'],get:()=>r.aiCount>0?r.serverCost/r.aiCount:null},
+  inputMillion:{keys:['input'],get:()=>r.input/1e6},outputMillion:{keys:['output'],get:()=>r.output/1e6}
+ };
+ document.querySelectorAll('[data-output]').forEach(el=>{const key=el.dataset.output,alias=aliases[key],status=alias?joinStatus(r,alias.keys):resultStatus(r,key);displayResultKey(el,r,key,n,alias&&status==='ready'?alias.get():r[key],status);});
+ for(const [key] of detailRows){const isToken=['input','output','includedInput','includedOutput','overInput','overOutput'].includes(key);displayResultKey('detail-'+key,r,key,isToken?x=>n(x/1e6,4)+' 百万Token':x=>f(x)+' 元');$('detail-'+key).classList.toggle('negative',resultStatus(r,key)==='ready'&&(key==='profit'||key==='fullPackageProfit')&&r[key]<0);}
+ if(state.poolMode==='separate'){text('formula-overInput','MAX(0, 实际输入Token − 全项目内含输入Token)');text('formula-overOutput','MAX(0, 实际输出Token − 全项目内含输出Token)');}
+ else{text('formula-overInput','超额比例＝MAX(0, 实际加权用量−内含加权额度) ÷ 实际加权用量；超量输入＝实际输入×该比例');text('formula-overOutput','超量输出＝实际输出×相同超额比例；共享系数只约定额度抵扣，不代表服务售价。');}
+ for(const e of r.errors||[])markInputError(e);
+ for(const m of r.warnings||[])if(!m.msg.startsWith('人员支持、维护等其他费用尚未填写'))addMessage(m);
+ if(reverseError?.status==='pending')addMessage({msg:reverseError.msg});
+ const humanStatus=resultStatus(r,'humanCost');
+ displayResultKey('human-result',r,'humanCost',x=>`同量人工工作量 ${n(r.humanCount)} 人 × 月薪 ${n(r.v.humanMonthly)} 元＝${f(x)} 元 / 月。只是工资参照，不等于实际裁员或已实现节省。`);
+ if(humanStatus==='pending')text('human-result','待填写：人工服务人数和月薪；该参照不影响AI报价。');
+}
+function persist(){try{localStorage.setItem(STORE_KEY,JSON.stringify(state));text('save-state','本机已保存 · 已填部分实时联算');}catch(e){text('save-state','未自动保存，请点击“保存填写版”');}}
+function migrateKnownUsage(){for(const k of ['inputPerRound','outputPerRound','contextChars','recordChars'])if(resultStatus(lastResult,k)==='ready')state[k]=lastResult[k];}
+function onChange(el){
+ const k=el.dataset.field;if(!k)return;const before=lastResult;reverseError=null;
+ if(k==='usageMode'){migrateKnownUsage();state[k]=el.value;syncInputs();}
+ else if(typeof DEFAULTS[k]==='boolean')state[k]=el.value==='true';else state[k]=el.value;
+ if(k==='rounds'){scenarioBase=null;selectedPreset=null;}
+ render();persist();updateChangeNote(k);announceChange(el.getAttribute('aria-label')||k,before,k==='usageMode'?'mode':'edit');
+}
+function announceChange(label,before,kind='edit'){
+ const el=$('action-feedback'),r=lastResult;el.hidden=false;el.classList.toggle('bad',(r?.errors||[]).length>0);
+ if(kind==='mode')el.textContent=`已切换为${state.usageMode==='token'?'直接填Token':'按对话字数估算'}，沿用已知的等价用量；其余依赖待填写。`;
+ else if((r?.errors||[]).length)el.textContent=label+'已更新；请修正相关红色参数，其他已知结果继续联算。';
+ else if(resultStatus(r,'profit')==='ready'&&resultStatus(before,'profit')==='ready')el.textContent=`${label}｜月成本 ${f(before.totalCost)} → ${f(r.totalCost)} 元；月毛利 ${f(before.profit)} → ${f(r.profit)} 元。`;
+ else el.textContent=label+'已更新；已填写部分同步联算，其余结果待填写。';
+ for(const key of ['revenue','totalCost','profit','margin']){const kpi=$('kpi-'+key);kpi.classList.remove('changed-kpi');if(resultStatus(before,key)==='ready'&&resultStatus(r,key)==='ready'&&Math.abs(before[key]-r[key])>1e-8){void kpi.offsetWidth;kpi.classList.add('changed-kpi');}}
+}
+function switchUsageMode(mode){const before=lastResult;reverseError=null;migrateKnownUsage();state.usageMode=mode;syncInputs();render();persist();announceChange('填写方式',before,'mode');}
+function download(name,textValue,mime){const url=URL.createObjectURL(new Blob([textValue],{type:mime}));const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1200);}
+function resultExport(){
+ const r=lastResult;if(!r)return {status:'partial',resultStatus:{},errors:[]};
+ return {status:r.ok?'calculated':(r.errors||[]).length?'invalid':'partial',resultStatus:{...r.status},errors:r.errors||[],pendingFields:r.pendingFields||[],period:'monthly',currency:'CNY',activeFriends:r.active,aiEmployees:r.aiCount,accounts:r.accountCount,servers:r.serverCount,inputTokens:r.input,outputTokens:r.output,overInputTokens:r.overInput,overOutputTokens:r.overOutput,baseRevenue:r.baseRevenue,overageRevenue:r.overRevenue,revenue:r.revenue,tokenCost:r.tokenCost,accountCost:r.accountCost,serverCost:r.serverCost,otherCost:r.overheadMissing?null:r.otherCost,listedCost:r.totalCost,listedGrossProfit:r.profit,listedGrossMargin:r.margin,warning:(r.warnings||[]).map(x=>x.msg)};
 }
 function updateChangeNote(k){
- if(!lastResult?.ok){text('change-note','结果暂不可用，请修改红色格；不会保留旧结果冒充新结果。');return;}
- const r=lastResult;
- if(k==='activePct'||k==='totalFriends'||k==='activeFriends'||k==='friendsPerAI'){
-  text('change-note',`已联动：活跃 ${n(r.active)} 人 → AI ${n(r.aiCount)} 名 → 月基础收入 ${f(r.baseRevenue)} 元；账号 ${n(r.accountCount)} 个、服务器 ${n(r.serverCount)} 台。`);
- }else text('change-note','当前填写已重新计算；明细、顶部结果和导出数据使用同一组公式。');
+ const r=lastResult,value=(key,formatter=n)=>resultStatus(r,key)==='ready'?formatter(r[key]):statusText(resultStatus(r,key));
+ if(['activePct','totalFriends','activeFriends','friendsPerAI','aiMonthly'].includes(k))text('change-note',`已联动：活跃 ${value('active')} 人 → AI ${value('aiCount')} 名 → 月基础收入 ${value('baseRevenue',f)} 元；账号 ${value('accountCount')} 个、服务器 ${value('serverCount')} 台。`);
+ else text('change-note','已填写部分重新联算；明细、顶部结果和导出使用相同依赖关系，缺项与错误不会保留旧结果。');
 }
 function onReverse(el){
- const k=el.dataset.reverse;const before=lastResult;reverseError=null;
- const p=parseNumber(el.value);
- let target=null,den=null,result=null;
- if(p.value===null||p.value<0){reverseError={field:k,msg:'请输入不小于0的有效数字'};render();return;}
+ const k=el.dataset.reverse,before=lastResult,target=REVERSE_TARGETS[k];reverseError=null;const p=parseNumber(el.value);
+ if(p.blank){state[target]='';syncInputs();render();persist();updateChangeNote(k);return;}
+ const fail=(msg,status='invalid',override='invalid')=>{reverseError={field:k,target,msg,status,override:status==='invalid'?override:null};render();};
+ if(p.value===null||p.value<0){fail('请输入不小于0的有效数字');return;}
+ let den,result;
  if(k==='activeFriends'){
-  den=parseNumber(state.totalFriends).value;target='activePct';
-  if(den===null||den<=0)reverseError={field:k,msg:'请先填写大于0的总好友量'};
-  else if(p.value>den)reverseError={field:k,msg:'活跃好友不能超过总好友量'};
-  else result=p.value/den*100;
+  const total=parseNumber(state.totalFriends);
+  if(total.value===null||total.value<=0){fail('反算活跃比例需要先填写大于0的总好友量','pending');return;}
+  den=total.value;if(p.value>den){fail('活跃好友不能超过总好友量');return;}result=p.value/den*100;
  }else{
-  const r=calculate(state);
-  if(!r.ok)reverseError={field:k,msg:'请先修正其他参数，再反算费用'};
-  else{
-   const m={baseRevenueEdit:['aiMonthly',r.aiCount],accountCostEdit:['accountMonthly',r.accountCount],serverCostEdit:['serverMonthly',r.serverCount]};
-   [target,den]=m[k];
-   if(!den)reverseError={field:k,msg:'数量为0，无法反算单价；请先填写服务规模'};
-   else result=p.value/den;
-  }
+  const r=calculate(state),countKey={baseRevenueEdit:'aiCount',accountCostEdit:'accountCount',serverCostEdit:'serverCount'}[k];
+  if(resultStatus(r,countKey)!=='ready'){fail('请先填写本项所需的数量；其他结果继续联算','pending');return;}
+  den=r[countKey];if(den<=0){fail('数量为0，无法反算单价；请先填写服务规模');return;}result=p.value/den;
  }
- if(!reverseError){state[target]=Number(result.toPrecision(14));syncInputs();}
- render();if(!reverseError)persist();updateChangeNote(k);announceChange(el.getAttribute('aria-label')||k,before);
+ state[target]=Number(result.toPrecision(14));syncInputs();render();persist();updateChangeNote(k);announceChange(el.getAttribute('aria-label')||k,before);
 }
 
 buildSummary();buildDetails();syncInputs();render();text('save-state',loadedNote+' · 本机离线');
 document.querySelectorAll('[data-field]').forEach(el=>{
  el.addEventListener(el.tagName==='SELECT'?'change':'input',()=>onChange(el));
- if(el.tagName==='INPUT')el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const list=[...document.querySelectorAll('input[data-field]:not(:disabled),select[data-field]:not(:disabled)')].filter(x=>x.offsetParent!==null);const idx=list.indexOf(el),next=list[idx+1];if(next){next.focus();if(next.select)next.select();}}});
+ if(el.tagName==='INPUT')el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();const list=[...document.querySelectorAll('input[data-field]:not(:disabled),select[data-field]:not(:disabled)')].filter(x=>x.offsetParent!==null);const next=list[list.indexOf(el)+1];if(next){next.focus();if(next.select)next.select();}}});
 });
 document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{
- const before=lastResult;reverseError=null;
- if(!before?.ok){toast('请先填写完整参数或导入本机JSON，再比较相对用量情景。');return;}
- if(scenarioBase===null)scenarioBase=before.v.rounds;selectedPreset=b.dataset.preset;
- state.rounds=scenarioBase*PRESETS[selectedPreset].factor;
- syncInputs();render();persist();announceChange(b.textContent.trim(),before,'preset');
+ const before=lastResult,p=parseNumber(state.rounds);reverseError=null;
+ if(p.value===null||p.value<0||before.fieldStatus?.rounds==='invalid'){toast('请先填写有效的每人月AI处理次数，再比较用量情景。');return;}
+ if(scenarioBase===null)scenarioBase=p.value;selectedPreset=b.dataset.preset;state.rounds=scenarioBase*PRESETS[selectedPreset].factor;
+ syncInputs();render();persist();updateChangeNote('rounds');announceChange(b.textContent.trim(),before,'preset');
 }));
-$('export-json').onclick=()=>{const payload={tool:'lx-wecom-ai-pricing',version:VERSION,exportedAt:new Date().toISOString(),parameters:state,results:resultExport()};download('零犀_企微AI员工_填写结果.json',JSON.stringify(payload,null,2),'application/json;charset=utf-8');toast('已下载本机参数和计算结果；未上传填写内容。');};
+$('export-json').onclick=()=>{const payload={tool:'lx-wecom-ai-pricing',version:VERSION,exportedAt:new Date().toISOString(),parameters:state,results:resultExport()};download('零犀_企微AI员工_填写结果.json',JSON.stringify(payload,null,2),'application/json;charset=utf-8');toast('已导出参数、已知结果和待填写状态；文件保存在本机。');};
 $('save-html').onclick=()=>{const clone=document.documentElement.cloneNode(true);clone.querySelector('#embedded-state').textContent=JSON.stringify(state).replace(/</g,'\\u003c');clone.querySelector('#toast').hidden=true;download('零犀_企微AI员工测算_已填写.html','<!doctype html>\n'+clone.outerHTML,'text/html;charset=utf-8');toast('已保存带当前参数的网页，重新打开即可继续填写。');};
 $('import-json').onclick=()=>$('file-input').click();
-$('file-input').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2*1024*1024)throw Error('文件超过2MB，请选择本测算页导出的JSON');const obj=JSON.parse(await file.text());reverseError=null;scenarioBase=null;selectedPreset=null;state=safeState(obj.parameters||obj.inputs||obj.state||obj);syncInputs();render();persist();toast(lastResult.ok?'已导入，结果已重新计算。':'已导入，请检查红色提示的参数。');}catch(err){toast('导入失败：'+err.message);}e.target.value='';};
-$('reset').onclick=()=>{if(!confirm('清空当前填写？建议先保存或导出本机参数。'))return;reverseError=null;scenarioBase=null;selectedPreset=null;state={...DEFAULTS};syncInputs();render();persist();text('change-note','');$('action-feedback').hidden=true;toast('已清空填写，未内置任何规模或报价。');};
+$('file-input').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{if(file.size>2*1024*1024)throw Error('文件超过2MB，请选择本测算页导出的JSON');const obj=JSON.parse(await file.text());reverseError=null;scenarioBase=null;selectedPreset=null;state=safeState(obj.parameters||obj.inputs||obj.state||obj);syncInputs();render();persist();toast(lastResult.ok?'已导入，结果已重新计算。':lastResult.errors.length?'已导入，已知结果已更新；请检查红色参数。':'已导入，已知结果已更新，其余参数待填写。');}catch(err){toast('导入失败：'+err.message);}e.target.value='';};
+$('reset').onclick=()=>{if(!confirm('清空填写参数？当前填写会被替换，建议先保存。'))return;reverseError=null;scenarioBase=null;selectedPreset=null;state={...DEFAULTS};syncInputs();render();persist();text('change-note','');$('action-feedback').hidden=true;toast('已清空填写，未内置任何规模或报价。');};
 window.lxCalc={calculate,getState:()=>({...state}),setState:s=>{reverseError=null;scenarioBase=null;selectedPreset=null;state=safeState(s);syncInputs();render();},getResult:()=>lastResult,defaults:DEFAULTS,presets:PRESETS};
-
-
-document.querySelectorAll('[data-reverse]').forEach(el=>{
- el.addEventListener('input',()=>onReverse(el));
- el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();el.blur();}});
-});
-document.querySelectorAll('input[data-field],input[data-reverse]').forEach(el=>{
- el.addEventListener('focus',()=>el.select());
- el.addEventListener('blur',()=>{render();});
-});
-document.querySelectorAll('[data-auto]').forEach(btn=>btn.addEventListener('click',()=>{
- reverseError=null;state[btn.dataset.auto]='';syncInputs();render();persist();updateChangeNote(btn.dataset.auto);
-}));
-
-
+document.querySelectorAll('[data-reverse]').forEach(el=>{el.addEventListener('input',()=>onReverse(el));el.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();el.blur();}});});
+document.querySelectorAll('input[data-field],input[data-reverse]').forEach(el=>{el.addEventListener('focus',()=>el.select());el.addEventListener('blur',()=>render());});
+document.querySelectorAll('[data-auto]').forEach(btn=>btn.addEventListener('click',()=>{reverseError=null;state[btn.dataset.auto]='';syncInputs();render();persist();updateChangeNote(btn.dataset.auto);}));
 document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>switchUsageMode(b.dataset.mode)));
 $('more-button').onclick=()=>{$('more-menu').hidden=!$('more-menu').hidden;};
 document.addEventListener('click',e=>{if(!e.target.closest('.more-wrap'))$('more-menu').hidden=true;});
